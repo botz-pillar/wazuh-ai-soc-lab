@@ -148,7 +148,7 @@ For convenience, there's a script that runs all of the above:
 
 ```bash
 # From the agent
-curl -s https://raw.githubusercontent.com/ai-csl/ai-csl-wazuh-lab/main/scripts/generate-events.sh | bash
+curl -s https://raw.githubusercontent.com/joshbotz/wazuh-ai-soc-lab/main/scripts/agent-events-generator.sh | bash
 ```
 
 Or copy the script to the agent and run it:

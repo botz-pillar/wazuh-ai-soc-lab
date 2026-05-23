@@ -62,7 +62,7 @@ For going deeper:
 
 ```bash
 # 1. Clone
-git clone https://github.com/botz-pillar/wazuh-ai-soc-lab.git
+git clone https://github.com/joshbotz/wazuh-ai-soc-lab.git
 cd wazuh-ai-soc-lab
 
 # 2. Configure Terraform (your public IP, your EC2 key name)
@@ -166,13 +166,13 @@ The MCP server runs on the manager. `bootstrap.sh` installs it, fetches a bearer
 
 ## About
 
-Built by **[Josh Botz](https://www.linkedin.com/in/joshthebotz/)** — cloud security + AI agent security practitioner. Background in FedRAMP / ConMon, Fortune 500 + IC work. Currently focused on agent security: detection, red-team, and the tooling that makes it useful. Connect on [LinkedIn](https://www.linkedin.com/in/joshthebotz/) — happy to talk about how AI shows up in real security work.
+Built by **[Josh Botz](https://www.linkedin.com/in/joshbotz/)** — cloud security + AI agent security practitioner. Background in FedRAMP / ConMon, Fortune 500 + IC work. Currently focused on agent security: detection, red-team, and the tooling that makes it useful. Connect on [LinkedIn](https://www.linkedin.com/in/joshbotz/) — happy to talk about how AI shows up in real security work.
 
 ---
 
 ## Support + contributing
 
-- **Lab issues** (deploy, Terraform, MCP wiring, anything broken): [open a GitHub Issue](https://github.com/botz-pillar/wazuh-ai-soc-lab/issues/new)
+- **Lab issues** (deploy, Terraform, MCP wiring, anything broken): [open a GitHub Issue](https://github.com/joshbotz/wazuh-ai-soc-lab/issues/new)
 - **MCP server bugs upstream**: [gensecaihq/Wazuh-MCP-Server](https://github.com/gensecaihq/Wazuh-MCP-Server/issues)
 - **Pull requests welcome.** This lab originated from a curriculum I built — it works, but every environment is a little different. If you find a bug or have a fix, send it in.
 
