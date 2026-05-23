@@ -1,0 +1,177 @@
+# Labels reference for the detection-engineering corpus (v2.0).
+#
+# Each event in the generated JSONL carries ground-truth labels under
+# event["_labels"]:
+#   - technique: MITRE ATT&CK technique ID (or null for benign)
+#   - malicious: bool — true for planted attack events
+#   - near_miss: bool — true for legitimate-but-attack-shaped events (FP surface)
+#
+# Sigma rules students write are validated against this ground truth:
+#   - rule fires on a labeled-malicious event with matching technique → TP
+#   - rule fires on a benign event → FP (near-miss FPs are the "real" FPs)
+#   - rule misses a labeled-malicious event with matching technique → FN
+
+schema_version: 2.0
+corpus_version: "2.0"
+generator: generate_corpus.py
+generator_seed_default: 42
+default_malicious_per_technique: 8
+
+# T1547.001 and T1021.002 emit ~2x events each (process + paired registry
+# or process + paired network), so their counts in the corpus are higher.
+
+techniques:
+  - id: T1059.001
+    name: "Command and Scripting Interpreter: PowerShell"
+    tactic: Execution
+    sysmon_event_ids: [1]
+    variants_in_corpus:
+      - "-EncodedCommand with long base64 payload"
+      - "-enc short-form, -nop -w hidden, varied payload length"
+      - "IEX (New-Object Net.WebClient).DownloadString(...)"
+    benign_near_misses_present:
+      - "MDM/Intune -EncodedCommand from MsSense.exe / IntuneAgent parents"
+    detection_hypothesis: |
+      PowerShell with -EncodedCommand or -enc + base64 argument, OR
+      IEX downloadstring shape. Don't anchor on parent-process alone:
+      MDM legitimately uses -enc.
+    sigma_field_targets:
+      - process.executable
+      - process.command_line
+      - process.parent.executable
+      - process.original_file_name
+
+  - id: T1003.001
+    name: "OS Credential Dumping: LSASS Memory"
+    tactic: Credential Access
+    sysmon_event_ids: [1]
+    variants_in_corpus:
+      - "rundll32 + comsvcs.dll MiniDump"
+      - "Renamed procdump (Image=update-helper.exe, OriginalFileName=procdump.exe)"
+      - "PowerShell Out-Minidump"
+    detection_hypothesis: |
+      rundll32 invoking comsvcs.dll's MiniDump function with a PID arg,
+      OR Image with OriginalFileName=procdump.exe regardless of Image path
+      (catches renamed binaries), OR PowerShell Out-Minidump on lsass.
+    sigma_field_targets:
+      - process.executable
+      - process.command_line
+      - process.original_file_name
+
+  - id: T1218.005
+    name: "System Binary Proxy Execution: Mshta"
+    tactic: Defense Evasion
+    sysmon_event_ids: [1]
+    variants_in_corpus:
+      - "Mshta from various Office parents (WINWORD/EXCEL/OUTLOOK)"
+      - "Mshta from chrome.exe, cmd.exe, explorer.exe parents"
+      - "URL targets named domains AND random subdomains on cheap TLDs"
+    benign_near_misses_present:
+      - "Local sysadmin .hta tools (support-form.hta, inventory.hta)"
+      - "Microsoft KB-style vbscript:Close(Execute(...)) shape"
+    detection_hypothesis: |
+      mshta.exe with a remote URL (https://) — but not local .hta paths.
+      Office or browser parent raises suspicion; system-utility parent
+      with a local path is the FP class.
+    sigma_field_targets:
+      - process.executable
+      - process.command_line
+      - process.parent.executable
+      - process.original_file_name
+
+  - id: T1053.005
+    name: "Scheduled Task/Job: Scheduled Task"
+    tactic: Persistence
+    sysmon_event_ids: [1]
+    variants_in_corpus:
+      - "schtasks.exe with /tr powershell -enc / mshta / cmd payloads"
+      - "PowerShell Register-ScheduledTask"
+      - "Three trigger types: onlogon, every-N-minutes, daily"
+    benign_near_misses_present:
+      - "App-installer schtasks (Google Update, OneDrive, Adobe, Edge)"
+    detection_hypothesis: |
+      schtasks /create OR Register-ScheduledTask with /tr (or -Action)
+      argument that itself invokes powershell -enc, mshta, or a path
+      under user-writable dirs. App-installer tasks usually point to
+      Program Files paths — that's the FP discriminator.
+    sigma_field_targets:
+      - process.command_line
+
+  - id: T1547.001
+    name: "Boot or Logon Autostart Execution: Registry Run Keys"
+    tactic: Persistence
+    sysmon_event_ids: [1, 13]
+    variants_in_corpus:
+      - "reg.exe add to HKCU/HKLM Run/RunOnce (process + paired EID 13)"
+      - "PowerShell Set-ItemProperty (process + paired EID 13)"
+      - "Multiple value names; target binaries in C:\\Users\\Public, %TEMP%, %APPDATA%"
+    benign_near_misses_present:
+      - "Spotify, Slack, Teams, Steam, Discord writing their own autorun (EID 13)"
+    detection_hypothesis: |
+      EID 13 with TargetObject containing \Run\ or \RunOnce\ AND Details
+      pointing at a user-writable path (C:\Users\Public, AppData\Local,
+      Windows\Temp, ProgramData). Legit apps point to Program Files.
+    sigma_field_targets:
+      - winlog.event_data.TargetObject
+      - winlog.event_data.Details
+      - process.command_line
+
+  - id: T1021.002
+    name: "Remote Services: SMB/Windows Admin Shares"
+    tactic: Lateral Movement
+    sysmon_event_ids: [1, 3]
+    variants_in_corpus:
+      - "net.exe use to C$/ADMIN$ with explicit /user (process + paired EID 3 to port 445)"
+      - "Targets workstations, servers, AND domain controllers"
+    benign_near_misses_present:
+      - "Login-script / GP startup-script SMB to fileserver shares (process + EID 3)"
+    detection_hypothesis: |
+      net.exe use to admin-share path (C$, ADMIN$, IPC$) WITH explicit
+      /user argument, paired with EID 3 to destination port 445.
+      Legit login scripts use named shares (share, deploy, users$).
+    sigma_field_targets:
+      - process.command_line
+      - destination.port
+      - destination.domain
+
+  - id: T1071.004
+    name: "Application Layer Protocol: DNS"
+    tactic: Command and Control
+    sysmon_event_ids: [22]
+    variants_in_corpus:
+      - "Long (45-70 char) base32-shape subdomain on .example C2 domains"
+      - "Query types: TXT, A, AAAA"
+      - "Initiated by nslookup, powershell, OR random helper.exe"
+    benign_near_misses_present:
+      - "CDN destinations (cloudfront, cloudflare, akamaized) with long random labels"
+      - "Microsoft telemetry: v10.events.data.microsoft.com, settings-win"
+    detection_hypothesis: |
+      EID 22 DnsQuery with QueryName whose first label is >40 chars and
+      base32/base64-shape, on uncommon TLDs. CDN labels are long but
+      hostnames are well-known and second-level.
+    sigma_field_targets:
+      - winlog.event_data.QueryName
+      - winlog.event_data.QueryType
+      - winlog.event_data.Image
+
+  - id: T1555.003
+    name: "Credentials from Password Stores: Credentials from Web Browsers"
+    tactic: Credential Access
+    sysmon_event_ids: [1]
+    variants_in_corpus:
+      - "Three browsers: Chrome, Edge, Brave (different paths)"
+      - "Three tools: cmd.exe copy, xcopy.exe, PowerShell Copy-Item"
+      - "Destinations in C:\\Users\\Public, AppData\\Local\\Temp, etc."
+    benign_near_misses_present:
+      - "User backup script copying browser bookmarks (.bak destination)"
+    detection_hypothesis: |
+      Process command line accessing 'Login Data' file under any browser's
+      User Data directory AND copying to a writable path. The dest path
+      shape is the discriminator: bookmark .bak files vs login.dat.
+    sigma_field_targets:
+      - process.command_line
+
+# Tuning targets (for the lesson's FP-rate exercise):
+fp_rate_acceptance: 0.02   # rules must measure < 2% FP on the corpus
+fp_rate_warn: 0.05         # warn at 5%
+fp_rate_kill: 0.10         # kill criteria (rule retired) at 10%

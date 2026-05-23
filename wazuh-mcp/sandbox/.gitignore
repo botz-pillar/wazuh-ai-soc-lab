@@ -1,0 +1,4 @@
+# Volumes are local state — never committed.
+data/
+.env
+*.log

@@ -1,0 +1,62 @@
+Control ID,Domain,Requirement,Status,Evidence Reference,Last Reviewed,Owner,Notes
+CC1.1,Control Environment,The entity demonstrates a commitment to integrity and ethical values,Compliant,Employee handbook; Code of conduct,2026-01-15,Dana Chen,Annual review completed
+CC1.2,Control Environment,The board of directors demonstrates independence from management and exercises oversight,Gap,,Never,Dana Chen,No formal board security oversight documented
+CC1.3,Control Environment,Management establishes structure authority and responsibility,Compliant,Org chart; Role descriptions,2026-01-15,Dana Chen,
+CC1.4,Control Environment,The entity demonstrates a commitment to attract develop and retain competent individuals,Unknown,,,Dana Chen,Need to document training requirements and security hiring criteria
+CC1.5,Control Environment,The entity holds individuals accountable for their internal control responsibilities,Unknown,,,Dana Chen,No formal performance review process for security responsibilities
+CC2.1,Communication and Information,The entity obtains or generates and uses relevant quality information,Gap,,Never,Marcus Webb,No formal threat intelligence process or security metrics program
+CC2.2,Communication and Information,The entity internally communicates information,Compliant,Slack channels; Weekly standup notes,2026-02-01,Dana Chen,
+CC2.3,Communication and Information,The entity communicates with external parties,Gap,,Never,Dana Chen,No external communication policy for security incidents or breach notification
+CC3.1,Risk Assessment,The entity specifies objectives with sufficient clarity,Unknown,,,Dana Chen,No formal risk assessment framework or documented security objectives
+CC3.2,Risk Assessment,The entity identifies and analyzes risks,Gap,,Never,Dana Chen,No risk register exists
+CC3.3,Risk Assessment,The entity considers the potential for fraud,Unknown,,,Dana Chen,No fraud risk assessment or insider threat program
+CC3.4,Risk Assessment,The entity identifies and assesses changes that could significantly impact internal control,Unknown,,,Dana Chen,No change risk assessment process
+CC4.1,Monitoring Activities,The entity selects develops and performs ongoing and separate evaluations,Gap,,Never,Marcus Webb,GuardDuty enabled but findings not reviewed for 6 months. No SIEM deployed.
+CC4.2,Monitoring Activities,The entity evaluates and communicates internal control deficiencies,Gap,,Never,Marcus Webb,No process to escalate or track monitoring findings
+CC5.1,Control Activities,The entity selects and develops control activities that contribute to risk mitigation,Unknown,,,Rachel Torres,Controls not formally documented or mapped to risks
+CC5.2,Control Activities,The entity selects and develops general control activities over technology,Gap,,Never,Rachel Torres,No formal IT general controls documentation
+CC5.3,Control Activities,The entity deploys control activities through policies and procedures,Gap,,Never,Rachel Torres,Policies exist but are outdated and incomplete. No regular review cycle.
+CC6.1,Logical and Physical Access,The entity implements logical access security over protected information assets,Gap,,,Rachel Torres,No centralized access management. Firewall rules and security groups not formally documented.
+CC6.2,Logical and Physical Access,The entity registers and authorizes new users prior to issuing credentials,Gap,,,Rachel Torres,No formal user provisioning process. Accounts created ad-hoc.
+CC6.3,Logical and Physical Access,The entity authorizes modifies or removes access based on roles,Gap,,,Rachel Torres,No formal access reviews. Contractor accounts persist after engagement ends. No deprovisioning process.
+CC6.4,Logical and Physical Access,The entity restricts physical access to facilities and protected assets,Compliant,Office access logs; Badge system records,2026-01-15,Dana Chen,AWS manages physical security for cloud resources
+CC6.5,Logical and Physical Access,The entity discontinues logical and physical protections over assets only after data recovery ability is diminished,Unknown,,,Rachel Torres,No asset disposal procedures documented
+CC6.6,Logical and Physical Access,The entity implements logical access security measures against threats from outside system boundaries,Gap,,,Marcus Webb,No SIEM. No IDS/IPS. No centralized alerting. GuardDuty enabled but unmonitored.
+CC6.7,Logical and Physical Access,The entity restricts the transmission movement and removal of information,Unknown,,,Rachel Torres,TLS encryption in transit exists but not formally documented or verified
+CC6.8,Logical and Physical Access,The entity implements controls to prevent or detect unauthorized or malicious software,Unknown,,,Rachel Torres,No software allowlisting. No MDM for endpoints. Basic antivirus only.
+CC7.1,System Operations,The entity uses detection and monitoring procedures to identify configuration changes and vulnerabilities,Gap,,,Marcus Webb,CloudTrail enabled but logs not reviewed. No vulnerability scanning. No configuration monitoring.
+CC7.2,System Operations,The entity monitors system components for anomalies,Gap,,,Marcus Webb,GuardDuty findings unreviewed for 6 months. No centralized monitoring dashboard.
+CC7.3,System Operations,The entity evaluates security events to determine whether they could or have resulted in failures,Gap,,,Marcus Webb,No incident classification criteria. No triage process documented.
+CC7.4,System Operations,The entity responds to identified security incidents by executing a defined incident response program,Gap,,,Dana Chen,No documented incident response plan. Response is ad-hoc. No IR team defined.
+CC7.5,System Operations,The entity identifies develops and implements activities to recover from identified security incidents,Gap,,,Dana Chen,No recovery procedures documented. Backups exist but never tested.
+CC8.1,Change Management,The entity authorizes designs develops configures documents tests approves and implements changes,Gap,,,Priya Sharma,Terraform used but no formal change approval process. No peer review required. No change advisory board.
+CC9.1,Risk Mitigation,The entity identifies selects and develops risk mitigation activities for business disruptions,Gap,,,Rachel Torres,No vendor risk management program. No business impact analysis.
+CC9.2,Risk Mitigation,The entity assesses and manages risks associated with vendors and business partners,Gap,,,Rachel Torres,No vendor security questionnaire process. No vendor compliance reviews.
+A1.1,Availability,The entity maintains monitors and evaluates current processing capacity,Unknown,,,Priya Sharma,Auto-scaling not configured. No capacity monitoring documented.
+A1.2,Availability,The entity authorizes designs develops implements operates approves maintains and monitors environmental protections and recovery infrastructure,Gap,,,Priya Sharma,RDS Multi-AZ configured but no DR plan documented. Backup restoration never tested.
+A1.3,Availability,The entity tests recovery plan procedures supporting system recovery,Gap,,,Priya Sharma,Backups run daily (svc-backup-agent) but have never been tested for restoration
+C1.1,Confidentiality,The entity identifies and maintains confidential information,Gap,,,Rachel Torres,No data classification policy. Client financial data and PII not formally classified.
+C1.2,Confidentiality,The entity disposes of confidential information,Gap,,,Rachel Torres,No data retention or disposal policy. No procedures for secure data destruction.
+PI1.1,Processing Integrity,The entity uses processing objectives to produce relevant outputs,Compliant,Application monitoring; Error logs,2026-03-01,James Park,
+PI1.2,Processing Integrity,The entity implements policies and procedures over system inputs,Compliant,Input validation; API schema enforcement,2026-03-01,James Park,
+PI1.3,Processing Integrity,The entity implements policies and procedures over system processing,Compliant,CI/CD pipeline; Automated tests,2026-03-01,James Park,
+PI1.4,Processing Integrity,The entity implements policies and procedures to make available or deliver output,Unknown,,,James Park,Not formally documented
+PI1.5,Processing Integrity,The entity implements policies and procedures to store inputs outputs and processing records,Unknown,,,James Park,Log retention not formally defined
+P1.1,Privacy,The entity provides notice about its privacy practices,Compliant,Privacy policy on website,2026-02-15,Rachel Torres,
+P2.1,Privacy,The entity communicates choices available and obtains consent,Unknown,,,Rachel Torres,Need to verify consent mechanisms for client data processing
+P3.1,Privacy,The entity collects personal information for the purposes identified in the notice,Unknown,,,Rachel Torres,No documentation of collection purposes mapped to privacy notice
+P3.2,Privacy,The entity collects personal information by fair and lawful means,Compliant,,2026-02-15,Rachel Torres,
+P4.1,Privacy,The entity limits the use of personal information to the purposes identified in the notice,Unknown,,,Rachel Torres,No formal data use limitation controls
+P4.2,Privacy,The entity retains personal information for only as long as needed,Gap,,,Rachel Torres,No retention schedule. No automated deletion processes.
+P4.3,Privacy,The entity securely disposes of personal information when no longer needed,Gap,,,Rachel Torres,No PII disposal procedures documented
+P5.1,Privacy,The entity grants identified and authenticated data subjects the ability to access their stored personal information,Unknown,,,Rachel Torres,No formal data subject access request process
+P5.2,Privacy,The entity corrects inaccurate or incomplete personal information upon request,Unknown,,,Rachel Torres,No correction process documented
+P6.1,Privacy,The entity discloses personal information to third parties only for identified purposes and with consent,Unknown,,,Rachel Torres,Third-party data sharing not formally documented
+P6.2,Privacy,The entity discloses personal information of deceased individuals only in compliance with applicable law,N/A,,,Rachel Torres,Not applicable to CloudVault business model
+P6.3,Privacy,The entity discloses personal information for research without identifying the individual,N/A,,,Rachel Torres,Not applicable
+P6.4,Privacy,The entity provides notice when personal information is disclosed as required by law,Unknown,,,Rachel Torres,No process documented
+P6.5,Privacy,The entity obtains commitments from vendors to protect personal information,Gap,,,Rachel Torres,No vendor data protection agreements in place
+P6.6,Privacy,The entity provides notification of breaches and incidents,Gap,,,Rachel Torres,No breach notification process. No incident communication templates.
+P6.7,Privacy,The entity provides notice about changes in privacy practices,Compliant,Privacy policy update log,2026-02-15,Rachel Torres,
+P7.1,Privacy,The entity collects and maintains accurate complete and relevant personal information,Unknown,,,Rachel Torres,Data quality processes not documented
+P8.1,Privacy,The entity implements a process for receiving addressing and responding to complaints,Unknown,,,Rachel Torres,No formal privacy complaint handling process

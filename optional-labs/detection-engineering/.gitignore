@@ -1,0 +1,4 @@
+# Generated outputs — students regenerate locally.
+windows-sysmon.jsonl
+windows-sysmon-no-labels.jsonl
+*.jsonl

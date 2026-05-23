@@ -1,0 +1,101 @@
+Question ID,Category,Question,Vendor Response
+V-001,Company Information,What is the legal name of your organization?,Wazuh Inc.
+V-002,Company Information,Where is your company headquartered?,"San Francisco, CA, United States"
+V-003,Company Information,How many employees does your organization have?,87 full-time employees
+V-004,Company Information,How long has your organization been in business?,Founded 2022
+V-005,Company Information,Describe the service you are providing to CloudVault Financial.,"Managed Wazuh SIEM-as-a-Service. We deploy, manage, and maintain Wazuh infrastructure for security monitoring, threat detection, and compliance reporting."
+V-006,Company Information,What is the deployment model for your service?,"Multi-tenant SaaS hosted on AWS (us-east-1 and eu-west-1)"
+V-007,Company Information,Do you have a dedicated security team?,Yes. Our security team consists of 4 full-time security engineers and a CISO.
+V-008,Company Information,Who is your CISO or equivalent security leader?,"Marcus Chen, CISO. 15 years experience in cloud security."
+V-009,Compliance and Certifications,Do you have a SOC 2 Type II report?,We achieved SOC 2 Type II certification in 2025. Our report was audited by A-LIGN and covers security, confidentiality, and availability. Report available under NDA.
+V-010,Compliance and Certifications,Can you provide a copy of your most recent SOC 2 report?,SOC 2 Type I report is available under NDA. Contact security@wazuh.com.
+V-011,Compliance and Certifications,Do you hold ISO 27001 certification?,Not at this time. We are evaluating ISO 27001 for 2027.
+V-012,Compliance and Certifications,Are you FedRAMP authorized?,No. FedRAMP authorization is not on our current roadmap.
+V-013,Compliance and Certifications,Do you comply with GDPR requirements?,Yes. We maintain a Data Processing Agreement and comply with GDPR requirements for EU customers.
+V-014,Compliance and Certifications,Can you provide a HIPAA Business Associate Agreement?,"Not at this time. HIPAA compliance is on our 2027 roadmap. We do not currently accept PHI, and our platform should not be used to process PHI."
+V-015,Compliance and Certifications,Have you completed a third-party penetration test in the last 12 months?,"Yes. Our most recent third-party penetration test was completed in January 2026 by NCC Group. Summary report available under NDA."
+V-016,Compliance and Certifications,How often do you conduct penetration tests?,Annually by a third party. We also conduct quarterly internal security assessments.
+V-017,Compliance and Certifications,Do you have cyber insurance?,Yes. Cyber liability insurance with coverage up to $5M through Coalition.
+V-018,Compliance and Certifications,Do you maintain a risk register?,"Yes. Our risk register is reviewed quarterly by the security team and annually by the executive team."
+V-019,Data Security,How is customer data encrypted at rest?,"All customer data is encrypted at rest using AES-256 via AWS S3 server-side encryption (SSE-S3). Database volumes use AWS EBS encryption with AWS-managed keys."
+V-020,Data Security,How is customer data encrypted in transit?,All data in transit is encrypted using TLS 1.2 or higher. We enforce TLS 1.2 minimum on all API endpoints and agent communications.
+V-021,Data Security,Do you use customer-managed encryption keys?,Not currently. We use AWS-managed encryption keys. Customer-managed KMS keys are on our Enterprise plan roadmap.
+V-022,Data Security,Is customer data logically or physically segregated from other customers?,"Customer data is logically segregated using unique tenant identifiers, separate database schemas, and tenant-scoped access controls. We do not offer physical segregation."
+V-023,Data Security,Where is customer data stored geographically?,US customers: AWS us-east-1 (Virginia). EU customers can request eu-west-1 (Ireland). We do not replicate data across regions without customer consent.
+V-024,Data Security,Do you process or store data outside the United States?,Only for EU customers who explicitly request eu-west-1. US customer data remains in the US.
+V-025,Data Security,What is your data retention policy?,Customer log data is retained for 90 days by default. Customers can configure retention up to 365 days at additional cost. Retention policies are configurable per data type.
+V-026,Data Security,What happens to customer data upon contract termination?,"Customer data is deleted within 30 days of contract termination. Customers can request a full data export in JSON format before termination. Deletion is confirmed in writing."
+V-027,Data Security,Can customers request deletion of specific data?,Yes. Customers can submit data deletion requests through our API or support portal. Deletion is completed within 14 business days.
+V-028,Data Security,How do you ensure data is completely removed when deleted?,"We perform logical deletion immediately and physical deletion within 30 days. AWS S3 object versioning is disabled for customer data buckets. We do not maintain backups beyond 30 days."
+V-029,Data Security,Do you perform data classification?,"Yes. We classify data into four categories: Public, Internal, Confidential, and Restricted. Customer security log data is classified as Confidential."
+V-030,Data Security,How is customer data backed up?,"Customer data is backed up daily to a separate AWS availability zone. Backups are encrypted using the same encryption standards as production data. Backup retention is 30 days."
+V-031,Access Control,How do you manage user authentication for customer access?,We support SSO via SAML 2.0 and OIDC. Username/password authentication is also available with configurable password complexity requirements.
+V-032,Access Control,Is multi-factor authentication supported?,"MFA is available for all customer user accounts via TOTP authenticator apps. MFA is not enforced by default but can be mandated by customer administrators."
+V-033,Access Control,Do you enforce MFA for your internal staff?,Yes. All internal staff are required to use hardware security keys (YubiKey) for authentication to production systems and corporate SSO.
+V-034,Access Control,How do you manage privileged access internally?,"We follow the principle of least privilege. Administrative access to production systems requires MFA, is time-limited (4-hour sessions), and is reviewed quarterly."
+V-035,Access Control,How do you manage service accounts and API keys?,"API keys are generated per customer and can be rotated by the customer at any time. Service accounts use short-lived tokens with automatic rotation. No long-lived credentials are used in production."
+V-036,Access Control,Do you perform regular access reviews?,We conduct quarterly access reviews for all internal staff with production access. Results are documented and available upon request.
+V-037,Access Control,How many employees have access to customer data?,"8 employees have the ability to access customer data in production: 4 security engineers, 2 SRE engineers, 1 support lead, and the CISO. All access is logged and reviewed."
+V-038,Access Control,How do you handle employee offboarding?,Access is revoked within 4 hours of termination notification. Offboarding checklist includes credential revocation across all systems. We maintain offboarding logs.
+V-039,Access Control,Can customer data be accessed by vendor employees?,"Access to customer data is restricted to authorized personnel on a need-to-know basis. All access to customer data is logged in our internal audit trail. Customers can request access logs."
+V-040,Access Control,Do you support IP allowlisting for API access?,Yes. Customers can configure IP allowlists for API access through the administration console.
+V-041,Infrastructure Security,What cloud provider do you use?,AWS. We leverage multiple availability zones within each region for redundancy.
+V-042,Infrastructure Security,How do you manage vulnerabilities in your infrastructure?,"We run automated vulnerability scans weekly using Qualys. Critical vulnerabilities (CVSS 9.0+) are patched within 48 hours. High vulnerabilities within 7 days. Medium within 30 days."
+V-043,Infrastructure Security,Do you use a WAF or DDoS protection?,Yes. AWS WAF and AWS Shield Standard are deployed on all customer-facing endpoints. We maintain custom WAF rules for OWASP Top 10 protections.
+V-044,Infrastructure Security,How do you secure your container infrastructure?,"We use Amazon ECS with Fargate for container workloads. Container images are scanned for vulnerabilities before deployment using ECR image scanning. We follow CIS Docker Benchmark guidelines."
+V-045,Infrastructure Security,Do you have a network segmentation strategy?,"Yes. Our environment is segmented using VPCs, security groups, and network ACLs. Customer-facing services, internal services, and management networks are on separate VPC segments."
+V-046,Infrastructure Security,How do you monitor your own infrastructure?,We use our own Wazuh deployment for security monitoring. Additionally we use AWS GuardDuty for threat detection and CloudTrail for API audit logging.
+V-047,Infrastructure Security,How do you manage secrets and credentials?,"All secrets are stored in AWS Secrets Manager with automatic rotation enabled. No secrets are stored in code repositories, configuration files, or environment variables."
+V-048,Infrastructure Security,Do you have an intrusion detection/prevention system?,Yes. Wazuh provides host-based intrusion detection on all production instances. AWS GuardDuty provides network-level threat detection.
+V-049,Infrastructure Security,How do you handle logging for your own infrastructure?,"All infrastructure logs are centralized in our internal Wazuh deployment. CloudTrail logs are stored in a dedicated, immutable S3 bucket with a 365-day retention policy."
+V-050,Infrastructure Security,Do you perform baseline hardening on your systems?,"Yes. All production systems are hardened according to CIS benchmarks. We use automated configuration management to enforce baseline compliance."
+V-051,Incident Response,Do you have a documented incident response plan?,Yes. Our IR plan is based on NIST SP 800-61 and is reviewed and updated annually. The plan was last tested via tabletop exercise in March 2026.
+V-052,Incident Response,How quickly do you notify customers of a security incident?,"We notify affected customers within 72 hours of confirming a security incident that impacts customer data. For critical incidents, we provide initial notification within 24 hours."
+V-053,Incident Response,Have you experienced a data breach in the last 3 years?,We have not experienced a data breach affecting customer data since the company was founded in 2022.
+V-054,Incident Response,Do you have a dedicated incident response team?,"Yes. Our IR team consists of the CISO, 2 senior security engineers, and 1 SRE engineer. On-call rotation provides 24/7 coverage."
+V-055,Incident Response,How do you communicate with customers during an incident?,We provide updates via email to designated security contacts and through our status page. For critical incidents we offer direct phone communication with the IR team lead.
+V-056,Incident Response,Do you conduct post-incident reviews?,Yes. We conduct a post-incident review within 5 business days of incident closure. Lessons learned are documented and shared with affected customers upon request.
+V-057,Business Continuity,What is your guaranteed uptime SLA?,"99.9% uptime, measured monthly. SLA credits are issued for availability below the guaranteed threshold."
+V-058,Business Continuity,What is your RTO and RPO?,RTO is 4 hours. RPO is 1 hour for all customer data.
+V-059,Business Continuity,Do you have a disaster recovery plan?,"Yes. We maintain a DR plan with failover to a secondary AWS region (us-west-2 for US customers). DR tests are conducted annually."
+V-060,Business Continuity,How often do you test your DR plan?,Annually. Our last DR test was completed in February 2026. Test results are available upon request.
+V-061,Business Continuity,Do you have a business continuity plan?,Yes. Our BCP covers loss of key personnel and extended service outages. It is reviewed annually.
+V-062,Third-Party Risk,Do you use subprocessors?,Yes. We use AWS for infrastructure hosting and Datadog for internal infrastructure monitoring and PagerDuty for incident alerting.
+V-063,Third-Party Risk,How do you assess the security of your subprocessors?,"We review subprocessor SOC 2 reports annually. We maintain data processing agreements with all subprocessors. We conduct annual security reviews."
+V-064,Third-Party Risk,Do you notify customers of changes to subprocessors?,Yes. We provide 30 days advance notice of any new subprocessor that will have access to customer data.
+V-065,Third-Party Risk,Do any subprocessors have access to customer data?,"AWS has access as the infrastructure provider. Datadog and PagerDuty do not have access to customer security log data. Our monitoring tools only collect infrastructure metrics, not customer data."
+V-066,Application Security,Do you perform regular code reviews?,All code changes go through mandatory peer review and automated SAST scanning (Semgrep) before deployment. No code reaches production without review.
+V-067,Application Security,Do you have a secure software development lifecycle?,We follow an SDLC based on OWASP SAMM. This includes threat modeling for new features and security-focused design reviews.
+V-068,Application Security,How often do you release updates?,We deploy updates bi-weekly using a blue-green deployment strategy. Emergency security patches can be deployed within 4 hours.
+V-069,Application Security,Do you have a bug bounty or vulnerability disclosure program?,We have a responsible disclosure policy published on our website. We do not currently operate a formal bug bounty program.
+V-070,Application Security,How do you manage dependencies and third-party libraries?,We use Dependabot for automated dependency updates and Snyk for vulnerability scanning of third-party libraries. Critical dependency vulnerabilities are patched within 48 hours.
+V-071,Application Security,Do you perform dynamic application security testing?,Yes. We conduct quarterly DAST scans using OWASP ZAP against our staging environment. Findings are triaged and remediated before production deployment.
+V-072,Employee Security,Do you perform background checks on employees?,Yes. All employees undergo criminal background checks and employment verification before hiring.
+V-073,Employee Security,Do you provide security awareness training?,All employees complete security awareness training during onboarding and annually thereafter. We conduct quarterly phishing simulations with a target click rate below 5%.
+V-074,Employee Security,Do employees sign confidentiality agreements?,Yes. All employees sign NDAs and confidentiality agreements as part of their employment terms.
+V-075,Employee Security,How do you handle security violations by employees?,"Security violations are handled according to our disciplinary policy. Serious violations can result in immediate termination and are reported to law enforcement if criminal activity is suspected."
+V-076,Monitoring and Logging,Do you monitor your own infrastructure for security events?,Yes. We use our own Wazuh deployment for security monitoring of all production infrastructure. AWS GuardDuty and CloudTrail provide additional detection capabilities.
+V-077,Monitoring and Logging,How long do you retain security logs?,Internal security logs are retained for 365 days. CloudTrail logs are retained indefinitely in S3 Glacier.
+V-078,Monitoring and Logging,Can customers access audit logs for their own tenant?,Yes. Customers can access their tenant audit logs via the API or dashboard. Logs include all user actions and system events within their tenant.
+V-079,Monitoring and Logging,Do you have a SIEM deployed?,"Yes. We operate our own Wazuh deployment for internal security monitoring, separate from customer environments."
+V-080,Monitoring and Logging,How do you detect anomalous behavior?,We use Wazuh rules for signature-based detection and AWS GuardDuty for anomaly-based detection. Custom detection rules are maintained for known attack patterns against our platform.
+V-081,Data Privacy,Do you have a privacy policy?,Yes. Our privacy policy is publicly available on our website at wazuh.com/privacy.
+V-082,Data Privacy,Do you have a Data Protection Officer?,Our CISO serves as our Data Protection Officer for GDPR compliance purposes.
+V-083,Data Privacy,Do you process data in accordance with customer instructions only?,"Yes. We process customer data only as instructed by the customer and as defined in our Data Processing Agreement. We do not use customer data for our own purposes, training, or analytics."
+V-084,Data Privacy,Do you transfer data internationally?,"Only for EU customers who request the eu-west-1 region. We do not transfer US customer data outside the US. We maintain Standard Contractual Clauses for EU data transfers."
+V-085,Data Privacy,Can customers request a copy of all their data?,Yes. Customers can request a full data export in JSON format at any time through the API or by contacting support.
+V-086,Change Management,How do you manage changes to your production environment?,"All changes follow our change management process including peer review, automated testing, staging validation, and approval by a senior engineer. Changes are logged in our change management system."
+V-087,Change Management,Do you maintain a change log?,Yes. All production changes are logged with timestamps and the identity of the person who made the change. Change logs are retained for 365 days.
+V-088,Change Management,How do you handle emergency changes?,"Emergency changes follow an expedited process requiring approval from the on-call SRE lead and the CISO. Emergency changes are reviewed retrospectively within 24 hours."
+V-089,Change Management,Do you notify customers of changes that may affect them?,"Yes. Planned maintenance is communicated 7 days in advance via email and our status page. Changes that affect functionality are documented in release notes."
+V-090,API Security,How do you secure your API endpoints?,"APIs use OAuth 2.0 authentication with short-lived access tokens. Rate limiting is enforced per customer. All inputs are validated against defined schemas."
+V-091,API Security,Do you have API documentation?,Yes. Complete API documentation is available at docs.wazuh.com/api.
+V-092,API Security,How do you handle API versioning?,"We maintain backward compatibility for at least 12 months after deprecation notice. Breaking changes are communicated 90 days in advance."
+V-093,API Security,Do you support webhook integrations?,Yes. Customers can configure webhooks for alerting and integration with their existing tools. Webhook payloads are signed with HMAC-SHA256 for verification.
+V-094,Support,What is your average support response time?,Standard support: 8 business hours. Priority support: 2 hours. Critical incidents: 30 minutes.
+V-095,Support,Do you offer 24/7 support?,"24/7 support is available for Critical and High severity incidents. Standard support hours are Monday-Friday, 8am-8pm ET."
+V-096,Support,Do you offer a dedicated customer success manager?,"For Enterprise plans ($10K+/year), yes. Standard plan support is ticket-based."
+V-097,Contractual,What is the minimum contract term?,Annual contracts. Month-to-month available at a premium.
+V-098,Contractual,Do you carry errors and omissions insurance?,"Yes. E&O insurance with $3M coverage."
+V-099,Contractual,Can we conduct our own security assessment of your service?,"We allow customer security assessments under our responsible testing policy. Please contact security@wazuh.com to coordinate testing scope and schedule."
+V-100,Contractual,What are your limitation of liability terms?,"Limitation of liability is capped at the total fees paid by the customer in the 12 months preceding the claim. We do not limit liability for breaches of confidentiality obligations or data protection failures."

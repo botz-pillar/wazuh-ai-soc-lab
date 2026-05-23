@@ -1,0 +1,34 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "DevContractorAccess",
+      "Effect": "Allow",
+      "Action": [
+        "ec2:Describe*",
+        "ec2:StartInstances",
+        "ec2:StopInstances",
+        "ec2:RebootInstances",
+        "s3:*",
+        "iam:ListUsers",
+        "iam:ListRoles",
+        "iam:ListAttachedUserPolicies",
+        "sts:AssumeRole",
+        "logs:*",
+        "cloudwatch:*",
+        "lambda:*"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Sid": "DenyDestructive",
+      "Effect": "Deny",
+      "Action": [
+        "ec2:TerminateInstances",
+        "rds:DeleteDBInstance",
+        "s3:DeleteBucket"
+      ],
+      "Resource": "*"
+    }
+  ]
+}

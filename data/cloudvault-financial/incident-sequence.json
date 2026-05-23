@@ -1,0 +1,629 @@
+{
+  "Records": [
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAJK3EXAMPLE5",
+        "arn": "arn:aws:iam::471923845612:user/dev-contractor-01",
+        "accountId": "471923845612",
+        "userName": "dev-contractor-01"
+      },
+      "eventTime": "2026-04-03T19:30:05Z",
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+      "responseElements": {
+        "ConsoleLogin": "Success"
+      },
+      "additionalEventData": {
+        "MFAUsed": "No"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAJK3EXAMPLE5",
+        "arn": "arn:aws:iam::471923845612:user/dev-contractor-01",
+        "accountId": "471923845612",
+        "userName": "dev-contractor-01"
+      },
+      "eventTime": "2026-04-03T19:32:11Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "GetUser",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "console.amazonaws.com",
+      "requestParameters": {
+        "userName": "dev-contractor-01"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAJK3EXAMPLE5",
+        "arn": "arn:aws:iam::471923845612:user/dev-contractor-01",
+        "accountId": "471923845612",
+        "userName": "dev-contractor-01"
+      },
+      "eventTime": "2026-04-03T19:33:44Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "ListAttachedUserPolicies",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "console.amazonaws.com",
+      "requestParameters": {
+        "userName": "dev-contractor-01"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAJK3EXAMPLE5",
+        "arn": "arn:aws:iam::471923845612:user/dev-contractor-01",
+        "accountId": "471923845612",
+        "userName": "dev-contractor-01"
+      },
+      "eventTime": "2026-04-03T19:34:22Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "ListRoles",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "console.amazonaws.com",
+      "requestParameters": null
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAJK3EXAMPLE5",
+        "arn": "arn:aws:iam::471923845612:user/dev-contractor-01",
+        "accountId": "471923845612",
+        "userName": "dev-contractor-01"
+      },
+      "eventTime": "2026-04-03T19:35:08Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "GetRole",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "console.amazonaws.com",
+      "requestParameters": {
+        "roleName": "CloudVaultAdminRole"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAJK3EXAMPLE5",
+        "arn": "arn:aws:iam::471923845612:user/dev-contractor-01",
+        "accountId": "471923845612",
+        "userName": "dev-contractor-01"
+      },
+      "eventTime": "2026-04-03T19:36:15Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "GetRolePolicy",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "console.amazonaws.com",
+      "requestParameters": {
+        "roleName": "CloudVaultAdminRole",
+        "policyName": "AdministratorAccess"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAJK3EXAMPLE5",
+        "arn": "arn:aws:iam::471923845612:user/dev-contractor-01",
+        "accountId": "471923845612",
+        "userName": "dev-contractor-01"
+      },
+      "eventTime": "2026-04-03T19:38:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "ListBuckets",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAJK3EXAMPLE5",
+        "arn": "arn:aws:iam::471923845612:user/dev-contractor-01",
+        "accountId": "471923845612",
+        "userName": "dev-contractor-01"
+      },
+      "eventTime": "2026-04-03T19:38:33Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetBucketAcl",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "bucketName": "cloudvault-client-docs"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAJK3EXAMPLE5",
+        "arn": "arn:aws:iam::471923845612:user/dev-contractor-01",
+        "accountId": "471923845612",
+        "userName": "dev-contractor-01"
+      },
+      "eventTime": "2026-04-03T19:39:10Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "ListObjectsV2",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "bucketName": "cloudvault-client-docs",
+        "prefix": "clients/",
+        "maxKeys": 100
+      },
+      "errorCode": "AccessDenied"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAJK3EXAMPLE5",
+        "arn": "arn:aws:iam::471923845612:user/dev-contractor-01",
+        "accountId": "471923845612",
+        "userName": "dev-contractor-01"
+      },
+      "eventTime": "2026-04-03T19:41:00Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "DescribeInstances",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "instancesSet": {},
+        "filterSet": {}
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAJK3EXAMPLE5",
+        "arn": "arn:aws:iam::471923845612:user/dev-contractor-01",
+        "accountId": "471923845612",
+        "userName": "dev-contractor-01"
+      },
+      "eventTime": "2026-04-03T19:42:30Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "DescribeSecurityGroups",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAJK3EXAMPLE5",
+        "arn": "arn:aws:iam::471923845612:user/dev-contractor-01",
+        "accountId": "471923845612",
+        "userName": "dev-contractor-01"
+      },
+      "eventTime": "2026-04-03T19:44:15Z",
+      "eventSource": "ec2.amazonaws.com",
+      "eventName": "AuthorizeSecurityGroupIngress",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "groupId": "sg-0a1b2c3d4e5f6dev",
+        "ipPermissions": {
+          "items": [
+            {
+              "ipProtocol": "tcp",
+              "fromPort": 3389,
+              "toPort": 3389,
+              "ipRanges": {
+                "items": [
+                  {
+                    "cidrIp": "0.0.0.0/0"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "responseElements": {
+        "_return": true
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "IAMUser",
+        "principalId": "AIDAJK3EXAMPLE5",
+        "arn": "arn:aws:iam::471923845612:user/dev-contractor-01",
+        "accountId": "471923845612",
+        "userName": "dev-contractor-01"
+      },
+      "eventTime": "2026-04-03T19:45:12Z",
+      "eventSource": "sts.amazonaws.com",
+      "eventName": "AssumeRole",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "roleArn": "arn:aws:iam::471923845612:role/CloudVaultAdminRole",
+        "roleSessionName": "dev-contractor-01-session",
+        "durationSeconds": 3600
+      },
+      "responseElements": {
+        "credentials": {
+          "accessKeyId": "ASIAEXAMPLE77777",
+          "expiration": "2026-04-03T20:45:12Z"
+        },
+        "assumedRoleUser": {
+          "assumedRoleId": "AROAEXAMPLE8:dev-contractor-01-session",
+          "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session"
+        }
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:46:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "ListObjectsV2",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "bucketName": "cloudvault-client-docs",
+        "prefix": "clients/",
+        "maxKeys": 100
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:47:05Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetObject",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "bucketName": "cloudvault-client-docs",
+        "key": "clients/peterson-trust/2026-q1-statement.pdf"
+      },
+      "responseElements": {
+        "x-amz-request-id": "EXAMPLE1"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:47:22Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetObject",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "bucketName": "cloudvault-client-docs",
+        "key": "clients/peterson-trust/portfolio-detail.csv"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:47:38Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetObject",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "bucketName": "cloudvault-client-docs",
+        "key": "clients/morrison-family/tax-documents-2025.pdf"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:47:55Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetObject",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "bucketName": "cloudvault-client-docs",
+        "key": "clients/chen-holdings/investment-strategy-2026.pdf"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:48:30Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetObject",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "bucketName": "cloudvault-client-docs",
+        "key": "clients/wellington-partners/aum-summary-2026.xlsx"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:49:15Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetObject",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "bucketName": "cloudvault-client-docs",
+        "key": "clients/nakamura-estate/trust-agreement-2025.pdf"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:50:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "ListObjectsV2",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "bucketName": "cloudvault-backups",
+        "prefix": "daily/",
+        "maxKeys": 100
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:50:22Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "GetObject",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "bucketName": "cloudvault-backups",
+        "key": "daily/2026-04-02-db-backup.sql.gz"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:52:00Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "CreateAccessKey",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "userName": "dev-contractor-01"
+      },
+      "responseElements": {
+        "accessKey": {
+          "accessKeyId": "AKIAEXAMPLE88888",
+          "status": "Active",
+          "userName": "dev-contractor-01"
+        }
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:53:30Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "CreateUser",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "userName": "svc-monitoring-agent"
+      },
+      "responseElements": {
+        "user": {
+          "userName": "svc-monitoring-agent",
+          "userId": "AIDAEXAMPLE99999"
+        }
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:53:45Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "AttachUserPolicy",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "userName": "svc-monitoring-agent",
+        "policyArn": "arn:aws:iam::aws:policy/AdministratorAccess"
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:54:00Z",
+      "eventSource": "iam.amazonaws.com",
+      "eventName": "CreateAccessKey",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "userName": "svc-monitoring-agent"
+      },
+      "responseElements": {
+        "accessKey": {
+          "accessKeyId": "AKIAEXAMPLE11111",
+          "status": "Active",
+          "userName": "svc-monitoring-agent"
+        }
+      }
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:56:00Z",
+      "eventSource": "cloudtrail.amazonaws.com",
+      "eventName": "StopLogging",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "name": "cloudvault-management-trail"
+      },
+      "errorCode": "InsufficientEncryptionPolicyException",
+      "errorMessage": "Trail cannot be stopped because it is an organization trail managed by the management account."
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:56:30Z",
+      "eventSource": "cloudtrail.amazonaws.com",
+      "eventName": "DeleteTrail",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "name": "cloudvault-management-trail"
+      },
+      "errorCode": "AccessDeniedException",
+      "errorMessage": "User is not authorized to perform: cloudtrail:DeleteTrail on resource."
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:57:00Z",
+      "eventSource": "s3.amazonaws.com",
+      "eventName": "DeleteObject",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "userAgent": "aws-cli/2.15.0 Python/3.11.6",
+      "requestParameters": {
+        "bucketName": "cloudvault-logs",
+        "key": "AWSLogs/471923845612/CloudTrail/us-east-1/2026/04/03/"
+      },
+      "errorCode": "AccessDenied"
+    },
+    {
+      "eventVersion": "1.08",
+      "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AROAEXAMPLE8:dev-contractor-01-session",
+        "arn": "arn:aws:sts::471923845612:assumed-role/CloudVaultAdminRole/dev-contractor-01-session",
+        "accountId": "471923845612"
+      },
+      "eventTime": "2026-04-03T19:58:00Z",
+      "eventSource": "signin.amazonaws.com",
+      "eventName": "ConsoleLogin",
+      "awsRegion": "us-east-1",
+      "sourceIPAddress": "104.28.55.201",
+      "responseElements": {
+        "ConsoleLogin": "Failure"
+      },
+      "errorMessage": "No username found in supplied account"
+    }
+  ]
+}

@@ -1,0 +1,636 @@
+{
+  "Findings": [
+    {
+      "schemaVersion": "2.0",
+      "accountId": "471923845612",
+      "region": "us-east-1",
+      "partition": "aws",
+      "id": "d4b5c6a7e8f9012345678901234abcde",
+      "arn": "arn:aws:guardduty:us-east-1:471923845612:detector/e80fbb4d783f4f9c/finding/d4b5c6a7e8f9012345678901234abcde",
+      "type": "UnauthorizedAccess:IAMUser/ConsoleLoginSuccess.B",
+      "severity": 8,
+      "createdAt": "2026-04-02T23:42:18.000Z",
+      "updatedAt": "2026-04-02T23:44:30.000Z",
+      "title": "API ConsoleLogin was invoked from an IP address on a known Tor exit node list.",
+      "description": "An API was used to access the AWS Management Console from IP address 185.220.101.34, which is on a list of known Tor exit node IP addresses. Tor exit node connections are frequently associated with malicious actors hiding their identity.",
+      "resource": {
+        "resourceType": "AccessKey",
+        "accessKeyDetails": {
+          "accessKeyId": "",
+          "principalId": "471923845612",
+          "userType": "Root",
+          "userName": "Root"
+        }
+      },
+      "service": {
+        "serviceName": "guardduty",
+        "detectorId": "e80fbb4d783f4f9c",
+        "action": {
+          "actionType": "AWS_API_CALL",
+          "awsApiCallAction": {
+            "api": "ConsoleLogin",
+            "serviceName": "signin.amazonaws.com",
+            "callerType": "Remote IP",
+            "remoteIpDetails": {
+              "ipAddressV4": "185.220.101.34",
+              "organization": {"asn": "205100", "asnOrg": "F3 Netze e.V.", "isp": "F3 Netze e.V.", "org": "F3 Netze e.V."},
+              "country": {"countryName": "Romania"},
+              "city": {"cityName": "Bucharest"},
+              "geoLocation": {"lat": 44.4268, "lon": 26.1025}
+            }
+          }
+        },
+        "resourceRole": "TARGET",
+        "additionalInfo": {"recentApiCalls": [{"api": "ConsoleLogin", "count": 1}]},
+        "eventFirstSeen": "2026-04-02T23:42:18.000Z",
+        "eventLastSeen": "2026-04-02T23:42:18.000Z",
+        "archived": false,
+        "count": 1
+      }
+    },
+    {
+      "schemaVersion": "2.0",
+      "accountId": "471923845612",
+      "region": "us-east-1",
+      "partition": "aws",
+      "id": "a1b2c3d4e5f6078901234567890abcdf",
+      "arn": "arn:aws:guardduty:us-east-1:471923845612:detector/e80fbb4d783f4f9c/finding/a1b2c3d4e5f6078901234567890abcdf",
+      "type": "UnauthorizedAccess:IAMUser/InstanceCredentialExfiltration.InsideAWS",
+      "severity": 8,
+      "createdAt": "2026-04-03T19:48:33.000Z",
+      "updatedAt": "2026-04-03T19:51:40.000Z",
+      "title": "Credentials for instance role on i-0dev567890 were used from external IP address 104.28.55.201.",
+      "description": "Credentials that were created exclusively for an EC2 instance through an instance launch role were used from an external IP address. This indicates that the credentials may have been exfiltrated from the instance.",
+      "resource": {
+        "resourceType": "AccessKey",
+        "accessKeyDetails": {
+          "accessKeyId": "ASIAEXAMPLE55555",
+          "principalId": "AIDAJK3EXAMPLE5",
+          "userType": "IAMUser",
+          "userName": "dev-contractor-01"
+        }
+      },
+      "service": {
+        "serviceName": "guardduty",
+        "detectorId": "e80fbb4d783f4f9c",
+        "action": {
+          "actionType": "AWS_API_CALL",
+          "awsApiCallAction": {
+            "api": "AssumeRole",
+            "serviceName": "sts.amazonaws.com",
+            "callerType": "Remote IP",
+            "remoteIpDetails": {
+              "ipAddressV4": "104.28.55.201",
+              "organization": {"asn": "13335", "asnOrg": "Cloudflare, Inc.", "isp": "Cloudflare, Inc.", "org": "Cloudflare, Inc."},
+              "country": {"countryName": "United States"},
+              "city": {"cityName": "San Francisco"},
+              "geoLocation": {"lat": 37.7749, "lon": -122.4194}
+            }
+          }
+        },
+        "resourceRole": "TARGET",
+        "additionalInfo": {"recentApiCalls": [{"api": "AssumeRole", "count": 1}, {"api": "GetObject", "count": 6}, {"api": "ListObjectsV2", "count": 2}]},
+        "eventFirstSeen": "2026-04-03T19:45:12.000Z",
+        "eventLastSeen": "2026-04-03T19:51:34.000Z",
+        "archived": false,
+        "count": 9
+      }
+    },
+    {
+      "schemaVersion": "2.0",
+      "accountId": "471923845612",
+      "region": "us-east-1",
+      "partition": "aws",
+      "id": "b2c3d4e5f6a7089012345678901bcdef",
+      "arn": "arn:aws:guardduty:us-east-1:471923845612:detector/e80fbb4d783f4f9c/finding/b2c3d4e5f6a7089012345678901bcdef",
+      "type": "Exfiltration:S3/AnomalousBehavior",
+      "severity": 8,
+      "createdAt": "2026-04-03T19:51:40.000Z",
+      "updatedAt": "2026-04-03T19:52:00.000Z",
+      "title": "An anomalous number of S3 API calls were made by assumed-role/CloudVaultAdminRole/dev-contractor-01-session.",
+      "description": "An IAM entity invoked S3 APIs in a manner that differs from the established baseline. An unusual number of S3 GetObject API calls were invoked by this IAM entity on S3 bucket cloudvault-client-docs.",
+      "resource": {
+        "resourceType": "S3Bucket",
+        "s3BucketDetails": [{"name": "cloudvault-client-docs", "type": "Destination", "publicAccess": {"effectivePermission": "NOT_PUBLIC"}, "defaultServerSideEncryption": {"encryptionType": "AES256"}}]
+      },
+      "service": {
+        "serviceName": "guardduty",
+        "detectorId": "e80fbb4d783f4f9c",
+        "action": {
+          "actionType": "AWS_API_CALL",
+          "awsApiCallAction": {
+            "api": "GetObject",
+            "serviceName": "s3.amazonaws.com",
+            "callerType": "Remote IP",
+            "remoteIpDetails": {
+              "ipAddressV4": "104.28.55.201",
+              "organization": {"asn": "13335", "asnOrg": "Cloudflare, Inc.", "isp": "Cloudflare, Inc.", "org": "Cloudflare, Inc."},
+              "country": {"countryName": "United States"},
+              "city": {"cityName": "San Francisco"},
+              "geoLocation": {"lat": 37.7749, "lon": -122.4194}
+            }
+          }
+        },
+        "resourceRole": "TARGET",
+        "additionalInfo": {"recentApiCalls": [{"api": "GetObject", "count": 6}, {"api": "ListObjectsV2", "count": 2}]},
+        "eventFirstSeen": "2026-04-03T19:46:00.000Z",
+        "eventLastSeen": "2026-04-03T19:50:22.000Z",
+        "archived": false,
+        "count": 8
+      }
+    },
+    {
+      "schemaVersion": "2.0",
+      "accountId": "471923845612",
+      "region": "us-east-1",
+      "partition": "aws",
+      "id": "c3d4e5f6a7b809012345678901cdef01",
+      "arn": "arn:aws:guardduty:us-east-1:471923845612:detector/e80fbb4d783f4f9c/finding/c3d4e5f6a7b809012345678901cdef01",
+      "type": "Recon:EC2/PortProbeUnprotectedPort",
+      "severity": 5,
+      "createdAt": "2026-03-15T08:22:10.000Z",
+      "updatedAt": "2026-04-04T12:15:00.000Z",
+      "title": "An unprotected port on EC2 instance i-0dev567890 is being probed.",
+      "description": "EC2 instance i-0dev567890 has an unprotected port 22 which is being probed by a known malicious host with IP address 45.33.32.156.",
+      "resource": {
+        "resourceType": "Instance",
+        "instanceDetails": {
+          "instanceId": "i-0dev567890",
+          "instanceType": "t3.small",
+          "instanceState": "running",
+          "launchTime": "2025-08-15T09:00:00.000Z",
+          "availabilityZone": "us-east-1a",
+          "imageId": "ami-0c55b159cbfafe1f0",
+          "networkInterfaces": [{"networkInterfaceId": "eni-0aaa111222", "privateDnsName": "ip-10-0-1-50.ec2.internal", "privateIpAddress": "10.0.1.50", "publicIp": "54.210.33.147", "subnetId": "subnet-0abc123def", "vpcId": "vpc-0123456789abcdef0", "securityGroups": [{"groupName": "sg-dev", "groupId": "sg-0a1b2c3d4e5f6dev"}]}],
+          "tags": [{"key": "Name", "value": "dev-server-01"}]
+        }
+      },
+      "service": {
+        "serviceName": "guardduty",
+        "detectorId": "e80fbb4d783f4f9c",
+        "action": {
+          "actionType": "PORT_PROBE",
+          "portProbeAction": {
+            "portProbeDetails": [{"localPortDetails": {"port": 22, "portName": "SSH"}, "remoteIpDetails": {"ipAddressV4": "45.33.32.156", "organization": {"asn": "63949", "asnOrg": "Linode, LLC", "isp": "Linode", "org": "Linode"}, "country": {"countryName": "China"}, "city": {"cityName": "Beijing"}}}],
+            "blocked": false
+          }
+        },
+        "resourceRole": "TARGET",
+        "additionalInfo": {"additionalScannedPorts": [22], "threatListName": "ProofPoint"},
+        "eventFirstSeen": "2026-03-15T08:22:10.000Z",
+        "eventLastSeen": "2026-04-04T12:15:00.000Z",
+        "archived": false,
+        "count": 347
+      }
+    },
+    {
+      "schemaVersion": "2.0",
+      "accountId": "471923845612",
+      "region": "us-east-1",
+      "partition": "aws",
+      "id": "d4e5f6a7b8c9012345678901def01234",
+      "arn": "arn:aws:guardduty:us-east-1:471923845612:detector/e80fbb4d783f4f9c/finding/d4e5f6a7b8c9012345678901def01234",
+      "type": "Recon:EC2/PortProbeUnprotectedPort",
+      "severity": 5,
+      "createdAt": "2026-04-01T22:10:05.000Z",
+      "updatedAt": "2026-04-04T06:30:00.000Z",
+      "title": "An unprotected port on EC2 instance i-0dev567890 is being probed.",
+      "description": "EC2 instance i-0dev567890 has an unprotected port 3389 which is being probed by a known malicious host with IP address 91.240.118.44.",
+      "resource": {
+        "resourceType": "Instance",
+        "instanceDetails": {
+          "instanceId": "i-0dev567890",
+          "instanceType": "t3.small",
+          "instanceState": "running",
+          "launchTime": "2025-08-15T09:00:00.000Z",
+          "availabilityZone": "us-east-1a",
+          "imageId": "ami-0c55b159cbfafe1f0",
+          "networkInterfaces": [{"networkInterfaceId": "eni-0aaa111222", "privateDnsName": "ip-10-0-1-50.ec2.internal", "privateIpAddress": "10.0.1.50", "publicIp": "54.210.33.147", "subnetId": "subnet-0abc123def", "vpcId": "vpc-0123456789abcdef0", "securityGroups": [{"groupName": "sg-dev", "groupId": "sg-0a1b2c3d4e5f6dev"}]}],
+          "tags": [{"key": "Name", "value": "dev-server-01"}]
+        }
+      },
+      "service": {
+        "serviceName": "guardduty",
+        "detectorId": "e80fbb4d783f4f9c",
+        "action": {
+          "actionType": "PORT_PROBE",
+          "portProbeAction": {
+            "portProbeDetails": [{"localPortDetails": {"port": 3389, "portName": "RDP"}, "remoteIpDetails": {"ipAddressV4": "91.240.118.44", "organization": {"asn": "49505", "asnOrg": "OOO Network of data-centers Selectel", "isp": "Selectel", "org": "Selectel"}, "country": {"countryName": "Russia"}, "city": {"cityName": "Moscow"}}}],
+            "blocked": false
+          }
+        },
+        "resourceRole": "TARGET",
+        "additionalInfo": {},
+        "eventFirstSeen": "2026-04-01T22:10:05.000Z",
+        "eventLastSeen": "2026-04-04T06:30:00.000Z",
+        "archived": false,
+        "count": 89
+      }
+    },
+    {
+      "schemaVersion": "2.0",
+      "accountId": "471923845612",
+      "region": "us-east-1",
+      "partition": "aws",
+      "id": "e5f6a7b8c9d0012345678901ef012345",
+      "arn": "arn:aws:guardduty:us-east-1:471923845612:detector/e80fbb4d783f4f9c/finding/e5f6a7b8c9d0012345678901ef012345",
+      "type": "UnauthorizedAccess:IAMUser/ConsoleLogin",
+      "severity": 5,
+      "createdAt": "2026-04-01T10:42:17.000Z",
+      "updatedAt": "2026-04-01T10:42:17.000Z",
+      "title": "An API was used to access the AWS Management Console without MFA by IAM user james.park.",
+      "description": "An API was used to access the AWS Management Console without multi-factor authentication by IAM principal james.park from IP address 98.45.172.92.",
+      "resource": {
+        "resourceType": "AccessKey",
+        "accessKeyDetails": {
+          "accessKeyId": "",
+          "principalId": "AIDAJK3EXAMPLE4",
+          "userType": "IAMUser",
+          "userName": "james.park"
+        }
+      },
+      "service": {
+        "serviceName": "guardduty",
+        "detectorId": "e80fbb4d783f4f9c",
+        "action": {
+          "actionType": "AWS_API_CALL",
+          "awsApiCallAction": {
+            "api": "ConsoleLogin",
+            "serviceName": "signin.amazonaws.com",
+            "callerType": "Remote IP",
+            "remoteIpDetails": {
+              "ipAddressV4": "98.45.172.92",
+              "organization": {"asn": "7922", "asnOrg": "Comcast Cable Communications, LLC", "isp": "Comcast Cable Communications", "org": "Comcast Cable Communications"},
+              "country": {"countryName": "United States"},
+              "city": {"cityName": "Austin"},
+              "geoLocation": {"lat": 30.2672, "lon": -97.7431}
+            }
+          }
+        },
+        "resourceRole": "TARGET",
+        "additionalInfo": {},
+        "eventFirstSeen": "2026-04-01T10:42:17.000Z",
+        "eventLastSeen": "2026-04-01T10:42:17.000Z",
+        "archived": false,
+        "count": 1
+      }
+    },
+    {
+      "schemaVersion": "2.0",
+      "accountId": "471923845612",
+      "region": "us-east-1",
+      "partition": "aws",
+      "id": "f6a7b8c9d0e1012345678901f0123456",
+      "arn": "arn:aws:guardduty:us-east-1:471923845612:detector/e80fbb4d783f4f9c/finding/f6a7b8c9d0e1012345678901f0123456",
+      "type": "Policy:IAMUser/RootCredentialUsage",
+      "severity": 5,
+      "createdAt": "2026-04-02T23:43:01.000Z",
+      "updatedAt": "2026-04-02T23:43:01.000Z",
+      "title": "API CreateAccessKey was invoked using root credentials from IP address 185.220.101.34.",
+      "description": "API CreateAccessKey was invoked using root credentials from IP address 185.220.101.34. Root credentials should not be used for day-to-day API access.",
+      "resource": {
+        "resourceType": "AccessKey",
+        "accessKeyDetails": {
+          "accessKeyId": "AKIAEXAMPLE99999",
+          "principalId": "471923845612",
+          "userType": "Root",
+          "userName": "Root"
+        }
+      },
+      "service": {
+        "serviceName": "guardduty",
+        "detectorId": "e80fbb4d783f4f9c",
+        "action": {
+          "actionType": "AWS_API_CALL",
+          "awsApiCallAction": {
+            "api": "CreateAccessKey",
+            "serviceName": "iam.amazonaws.com",
+            "callerType": "Remote IP",
+            "remoteIpDetails": {
+              "ipAddressV4": "185.220.101.34",
+              "organization": {"asn": "205100", "asnOrg": "F3 Netze e.V.", "isp": "F3 Netze e.V.", "org": "F3 Netze e.V."},
+              "country": {"countryName": "Romania"},
+              "city": {"cityName": "Bucharest"},
+              "geoLocation": {"lat": 44.4268, "lon": 26.1025}
+            }
+          }
+        },
+        "resourceRole": "TARGET",
+        "additionalInfo": {"recentApiCalls": [{"api": "CreateAccessKey", "count": 1}, {"api": "ListUsers", "count": 1}]},
+        "eventFirstSeen": "2026-04-02T23:43:01.000Z",
+        "eventLastSeen": "2026-04-02T23:44:22.000Z",
+        "archived": false,
+        "count": 2
+      }
+    },
+    {
+      "schemaVersion": "2.0",
+      "accountId": "471923845612",
+      "region": "us-east-1",
+      "partition": "aws",
+      "id": "a7b8c9d0e1f2012345678901a1234567",
+      "arn": "arn:aws:guardduty:us-east-1:471923845612:detector/e80fbb4d783f4f9c/finding/a7b8c9d0e1f2012345678901a1234567",
+      "type": "Recon:IAMUser/UserPermissions",
+      "severity": 5,
+      "createdAt": "2026-04-03T19:45:12.000Z",
+      "updatedAt": "2026-04-03T19:47:15.000Z",
+      "title": "APIs commonly associated with discovery of permissions and policies of an IAM entity were invoked by IAM user dev-contractor-01.",
+      "description": "APIs commonly used to discover the permissions and policies associated with an IAM entity were invoked by IAM principal dev-contractor-01. Such activity is not typically seen from this principal.",
+      "resource": {
+        "resourceType": "AccessKey",
+        "accessKeyDetails": {
+          "accessKeyId": "AKIAEXAMPLE55555",
+          "principalId": "AIDAJK3EXAMPLE5",
+          "userType": "IAMUser",
+          "userName": "dev-contractor-01"
+        }
+      },
+      "service": {
+        "serviceName": "guardduty",
+        "detectorId": "e80fbb4d783f4f9c",
+        "action": {
+          "actionType": "AWS_API_CALL",
+          "awsApiCallAction": {
+            "api": "ListAttachedUserPolicies",
+            "serviceName": "iam.amazonaws.com",
+            "callerType": "Remote IP",
+            "remoteIpDetails": {
+              "ipAddressV4": "104.28.55.201",
+              "organization": {"asn": "13335", "asnOrg": "Cloudflare, Inc.", "isp": "Cloudflare, Inc.", "org": "Cloudflare, Inc."},
+              "country": {"countryName": "United States"},
+              "city": {"cityName": "San Francisco"},
+              "geoLocation": {"lat": 37.7749, "lon": -122.4194}
+            }
+          }
+        },
+        "resourceRole": "TARGET",
+        "additionalInfo": {"recentApiCalls": [{"api": "ListAttachedUserPolicies", "count": 1}, {"api": "ListRoles", "count": 1}, {"api": "GetRole", "count": 1}, {"api": "GetRolePolicy", "count": 1}]},
+        "eventFirstSeen": "2026-04-03T19:33:44.000Z",
+        "eventLastSeen": "2026-04-03T19:36:15.000Z",
+        "archived": false,
+        "count": 4
+      }
+    },
+    {
+      "schemaVersion": "2.0",
+      "accountId": "471923845612",
+      "region": "us-east-1",
+      "partition": "aws",
+      "id": "b8c9d0e1f2a3012345678901b2345678",
+      "arn": "arn:aws:guardduty:us-east-1:471923845612:detector/e80fbb4d783f4f9c/finding/b8c9d0e1f2a3012345678901b2345678",
+      "type": "Persistence:IAMUser/AnomalousBehavior",
+      "severity": 5,
+      "createdAt": "2026-04-03T19:48:33.000Z",
+      "updatedAt": "2026-04-03T19:48:33.000Z",
+      "title": "An anomalous API call by IAM user dev-contractor-01 to assume a role was observed.",
+      "description": "An anomalous API call (AssumeRole) was observed for IAM principal dev-contractor-01. This API is not commonly used by this principal and the invoked role (CloudVaultAdminRole) has administrative-level access.",
+      "resource": {
+        "resourceType": "AccessKey",
+        "accessKeyDetails": {
+          "accessKeyId": "AKIAEXAMPLE55555",
+          "principalId": "AIDAJK3EXAMPLE5",
+          "userType": "IAMUser",
+          "userName": "dev-contractor-01"
+        }
+      },
+      "service": {
+        "serviceName": "guardduty",
+        "detectorId": "e80fbb4d783f4f9c",
+        "action": {
+          "actionType": "AWS_API_CALL",
+          "awsApiCallAction": {
+            "api": "AssumeRole",
+            "serviceName": "sts.amazonaws.com",
+            "callerType": "Remote IP",
+            "remoteIpDetails": {
+              "ipAddressV4": "104.28.55.201",
+              "organization": {"asn": "13335", "asnOrg": "Cloudflare, Inc.", "isp": "Cloudflare, Inc.", "org": "Cloudflare, Inc."},
+              "country": {"countryName": "United States"},
+              "city": {"cityName": "San Francisco"},
+              "geoLocation": {"lat": 37.7749, "lon": -122.4194}
+            }
+          }
+        },
+        "resourceRole": "TARGET",
+        "additionalInfo": {"recentApiCalls": [{"api": "AssumeRole", "count": 1}]},
+        "eventFirstSeen": "2026-04-03T19:48:33.000Z",
+        "eventLastSeen": "2026-04-03T19:48:33.000Z",
+        "archived": false,
+        "count": 1
+      }
+    },
+    {
+      "schemaVersion": "2.0",
+      "accountId": "471923845612",
+      "region": "us-east-1",
+      "partition": "aws",
+      "id": "c9d0e1f2a3b4012345678901c3456789",
+      "arn": "arn:aws:guardduty:us-east-1:471923845612:detector/e80fbb4d783f4f9c/finding/c9d0e1f2a3b4012345678901c3456789",
+      "type": "UnauthorizedAccess:EC2/SSHBruteForce",
+      "severity": 5,
+      "createdAt": "2026-03-20T14:00:00.000Z",
+      "updatedAt": "2026-04-04T14:00:00.000Z",
+      "title": "EC2 instance i-0dev567890 is being targeted by SSH brute force attacks.",
+      "description": "EC2 instance i-0dev567890 has been involved in SSH brute force attacks 247 times. Brute force attacks are used to gain unauthorized access to your instance by guessing the SSH password.",
+      "resource": {
+        "resourceType": "Instance",
+        "instanceDetails": {
+          "instanceId": "i-0dev567890",
+          "instanceType": "t3.small",
+          "instanceState": "running",
+          "launchTime": "2025-08-15T09:00:00.000Z",
+          "availabilityZone": "us-east-1a",
+          "imageId": "ami-0c55b159cbfafe1f0",
+          "networkInterfaces": [{"networkInterfaceId": "eni-0aaa111222", "privateDnsName": "ip-10-0-1-50.ec2.internal", "privateIpAddress": "10.0.1.50", "publicIp": "54.210.33.147", "subnetId": "subnet-0abc123def", "vpcId": "vpc-0123456789abcdef0", "securityGroups": [{"groupName": "sg-dev", "groupId": "sg-0a1b2c3d4e5f6dev"}]}],
+          "tags": [{"key": "Name", "value": "dev-server-01"}]
+        }
+      },
+      "service": {
+        "serviceName": "guardduty",
+        "detectorId": "e80fbb4d783f4f9c",
+        "action": {
+          "actionType": "NETWORK_CONNECTION",
+          "networkConnectionAction": {
+            "connectionDirection": "INBOUND",
+            "protocol": "TCP",
+            "blocked": false,
+            "remoteIpDetails": {
+              "ipAddressV4": "45.33.32.156",
+              "organization": {"asn": "63949", "asnOrg": "Linode, LLC", "isp": "Linode", "org": "Linode"},
+              "country": {"countryName": "China"},
+              "city": {"cityName": "Beijing"},
+              "geoLocation": {"lat": 39.9042, "lon": 116.4074}
+            },
+            "remotePortDetails": {"port": 54321, "portName": "Unknown"},
+            "localPortDetails": {"port": 22, "portName": "SSH"}
+          }
+        },
+        "resourceRole": "TARGET",
+        "additionalInfo": {},
+        "eventFirstSeen": "2026-03-20T14:00:00.000Z",
+        "eventLastSeen": "2026-04-04T14:00:00.000Z",
+        "archived": false,
+        "count": 247
+      }
+    },
+    {
+      "schemaVersion": "2.0",
+      "accountId": "471923845612",
+      "region": "us-east-1",
+      "partition": "aws",
+      "id": "d0e1f2a3b4c5012345678901d4567890",
+      "arn": "arn:aws:guardduty:us-east-1:471923845612:detector/e80fbb4d783f4f9c/finding/d0e1f2a3b4c5012345678901d4567890",
+      "type": "CryptoCurrency:EC2/BitcoinTool.B!DNS",
+      "severity": 5,
+      "createdAt": "2026-04-01T03:14:22.000Z",
+      "updatedAt": "2026-04-04T03:14:22.000Z",
+      "title": "EC2 instance i-0dev567890 is querying a domain name that is associated with Bitcoin-related activity.",
+      "description": "EC2 instance i-0dev567890 is querying a domain name that is associated with Bitcoin or other cryptocurrency-related activity.",
+      "resource": {
+        "resourceType": "Instance",
+        "instanceDetails": {
+          "instanceId": "i-0dev567890",
+          "instanceType": "t3.small",
+          "instanceState": "running",
+          "launchTime": "2025-08-15T09:00:00.000Z",
+          "availabilityZone": "us-east-1a",
+          "imageId": "ami-0c55b159cbfafe1f0",
+          "networkInterfaces": [{"networkInterfaceId": "eni-0aaa111222", "privateDnsName": "ip-10-0-1-50.ec2.internal", "privateIpAddress": "10.0.1.50", "publicIp": "54.210.33.147", "subnetId": "subnet-0abc123def", "vpcId": "vpc-0123456789abcdef0", "securityGroups": [{"groupName": "sg-dev", "groupId": "sg-0a1b2c3d4e5f6dev"}]}],
+          "tags": [{"key": "Name", "value": "dev-server-01"}]
+        }
+      },
+      "service": {
+        "serviceName": "guardduty",
+        "detectorId": "e80fbb4d783f4f9c",
+        "action": {
+          "actionType": "DNS_REQUEST",
+          "dnsRequestAction": {"domain": "pool.minexmr.com", "protocol": "UDP", "blocked": false}
+        },
+        "resourceRole": "ACTOR",
+        "additionalInfo": {},
+        "eventFirstSeen": "2026-04-01T03:14:22.000Z",
+        "eventLastSeen": "2026-04-04T03:14:22.000Z",
+        "archived": false,
+        "count": 12
+      }
+    },
+    {
+      "schemaVersion": "2.0",
+      "accountId": "471923845612",
+      "region": "us-east-1",
+      "partition": "aws",
+      "id": "e1f2a3b4c5d6012345678901e5678901",
+      "arn": "arn:aws:guardduty:us-east-1:471923845612:detector/e80fbb4d783f4f9c/finding/e1f2a3b4c5d6012345678901e5678901",
+      "type": "Trojan:EC2/DNSDataExfiltration",
+      "severity": 7,
+      "createdAt": "2026-04-03T20:15:00.000Z",
+      "updatedAt": "2026-04-03T20:45:00.000Z",
+      "title": "EC2 instance i-0dev567890 is performing DNS data exfiltration through DNS queries.",
+      "description": "EC2 instance i-0dev567890 is performing outbound DNS queries that indicate DNS data exfiltration. The DNS queries contain encoded data in the subdomain portion of the query.",
+      "resource": {
+        "resourceType": "Instance",
+        "instanceDetails": {
+          "instanceId": "i-0dev567890",
+          "instanceType": "t3.small",
+          "instanceState": "running",
+          "launchTime": "2025-08-15T09:00:00.000Z",
+          "availabilityZone": "us-east-1a",
+          "imageId": "ami-0c55b159cbfafe1f0",
+          "networkInterfaces": [{"networkInterfaceId": "eni-0aaa111222", "privateDnsName": "ip-10-0-1-50.ec2.internal", "privateIpAddress": "10.0.1.50", "publicIp": "54.210.33.147", "subnetId": "subnet-0abc123def", "vpcId": "vpc-0123456789abcdef0", "securityGroups": [{"groupName": "sg-dev", "groupId": "sg-0a1b2c3d4e5f6dev"}]}],
+          "tags": [{"key": "Name", "value": "dev-server-01"}]
+        }
+      },
+      "service": {
+        "serviceName": "guardduty",
+        "detectorId": "e80fbb4d783f4f9c",
+        "action": {
+          "actionType": "DNS_REQUEST",
+          "dnsRequestAction": {"domain": "a3f8d9e2b.data.suspicious-domain.xyz", "protocol": "UDP", "blocked": false}
+        },
+        "resourceRole": "ACTOR",
+        "additionalInfo": {},
+        "eventFirstSeen": "2026-04-03T20:15:00.000Z",
+        "eventLastSeen": "2026-04-03T20:45:00.000Z",
+        "archived": false,
+        "count": 37
+      }
+    },
+    {
+      "schemaVersion": "2.0",
+      "accountId": "471923845612",
+      "region": "us-east-1",
+      "partition": "aws",
+      "id": "f2a3b4c5d6e7012345678901f6789012",
+      "arn": "arn:aws:guardduty:us-east-1:471923845612:detector/e80fbb4d783f4f9c/finding/f2a3b4c5d6e7012345678901f6789012",
+      "type": "Policy:S3/BucketPublicAccessGranted",
+      "severity": 5,
+      "createdAt": "2026-04-02T10:18:44.000Z",
+      "updatedAt": "2026-04-02T10:18:44.000Z",
+      "title": "Public access was granted to S3 bucket cloudvault-app-assets.",
+      "description": "An IAM entity invoked an API used to grant public access to an S3 bucket, cloudvault-app-assets, by changing the bucket policy or ACL. The API PutBucketPolicy was invoked by IAM principal priya.sharma.",
+      "resource": {
+        "resourceType": "S3Bucket",
+        "s3BucketDetails": [{"name": "cloudvault-app-assets", "type": "Destination", "publicAccess": {"effectivePermission": "PUBLIC"}, "defaultServerSideEncryption": {"encryptionType": "AES256"}}]
+      },
+      "service": {
+        "serviceName": "guardduty",
+        "detectorId": "e80fbb4d783f4f9c",
+        "action": {
+          "actionType": "AWS_API_CALL",
+          "awsApiCallAction": {
+            "api": "PutBucketPolicy",
+            "serviceName": "s3.amazonaws.com",
+            "callerType": "Remote IP",
+            "remoteIpDetails": {
+              "ipAddressV4": "98.45.172.88",
+              "organization": {"asn": "7922", "asnOrg": "Comcast Cable Communications, LLC", "isp": "Comcast Cable Communications", "org": "Comcast Cable Communications"},
+              "country": {"countryName": "United States"},
+              "city": {"cityName": "Austin"},
+              "geoLocation": {"lat": 30.2672, "lon": -97.7431}
+            }
+          }
+        },
+        "resourceRole": "TARGET",
+        "additionalInfo": {},
+        "eventFirstSeen": "2026-04-02T10:18:44.000Z",
+        "eventLastSeen": "2026-04-02T10:18:44.000Z",
+        "archived": false,
+        "count": 1
+      }
+    },
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "a3b4c5d6e7f8012345678901a7890123", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-16T11:00:00.000Z", "updatedAt": "2026-03-16T11:00:00.000Z", "title": "An unprotected port on EC2 instance i-0dev567890 is being probed.", "description": "EC2 instance i-0dev567890 has an unprotected port 22 which is being probed by a known malicious host with IP address 103.45.67.89.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0dev567890", "instanceType": "t3.small", "tags": [{"key": "Name", "value": "dev-server-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 22, "portName": "SSH"}, "remoteIpDetails": {"ipAddressV4": "103.45.67.89", "country": {"countryName": "China"}, "city": {"cityName": "Shanghai"}}}], "blocked": false}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-16T11:00:00.000Z", "eventLastSeen": "2026-03-16T11:00:00.000Z", "archived": false, "count": 14}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "b4c5d6e7f8a9012345678901b8901234", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-17T22:00:00.000Z", "updatedAt": "2026-03-17T22:00:00.000Z", "title": "An unprotected port on EC2 instance i-0dev567890 is being probed.", "description": "EC2 instance i-0dev567890 has an unprotected port 22 which is being probed by a known malicious host with IP address 91.134.22.11.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0dev567890", "instanceType": "t3.small", "tags": [{"key": "Name", "value": "dev-server-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 22, "portName": "SSH"}, "remoteIpDetails": {"ipAddressV4": "91.134.22.11", "country": {"countryName": "France"}, "city": {"cityName": "Paris"}}}], "blocked": false}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-17T22:00:00.000Z", "eventLastSeen": "2026-03-17T22:00:00.000Z", "archived": false, "count": 8}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "c5d6e7f8a9b0012345678901c9012345", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-18T04:00:00.000Z", "updatedAt": "2026-03-18T04:00:00.000Z", "title": "An unprotected port on EC2 instance i-0dev567890 is being probed.", "description": "EC2 instance i-0dev567890 has an unprotected port 22 which is being probed by a known malicious host with IP address 185.156.73.44.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0dev567890", "instanceType": "t3.small", "tags": [{"key": "Name", "value": "dev-server-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 22, "portName": "SSH"}, "remoteIpDetails": {"ipAddressV4": "185.156.73.44", "country": {"countryName": "Russia"}, "city": {"cityName": "Moscow"}}}], "blocked": false}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-18T04:00:00.000Z", "eventLastSeen": "2026-03-18T04:00:00.000Z", "archived": false, "count": 22}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "d6e7f8a9b0c1012345678901d0123456", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-19T15:30:00.000Z", "updatedAt": "2026-03-19T15:30:00.000Z", "title": "An unprotected port on EC2 instance i-0dev567890 is being probed.", "description": "EC2 instance i-0dev567890 has an unprotected port 22 which is being probed by a known malicious host with IP address 5.188.210.77.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0dev567890", "instanceType": "t3.small", "tags": [{"key": "Name", "value": "dev-server-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 22, "portName": "SSH"}, "remoteIpDetails": {"ipAddressV4": "5.188.210.77", "country": {"countryName": "Netherlands"}, "city": {"cityName": "Amsterdam"}}}], "blocked": false}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-19T15:30:00.000Z", "eventLastSeen": "2026-03-19T15:30:00.000Z", "archived": false, "count": 5}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "e7f8a9b0c1d2012345678901e1234567", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-20T08:15:00.000Z", "updatedAt": "2026-03-20T08:15:00.000Z", "title": "An unprotected port on EC2 instance i-0dev567890 is being probed.", "description": "EC2 instance i-0dev567890 has an unprotected port 22 which is being probed by a known malicious host with IP address 45.155.205.233.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0dev567890", "instanceType": "t3.small", "tags": [{"key": "Name", "value": "dev-server-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 22, "portName": "SSH"}, "remoteIpDetails": {"ipAddressV4": "45.155.205.233", "country": {"countryName": "Germany"}, "city": {"cityName": "Frankfurt"}}}], "blocked": false}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-20T08:15:00.000Z", "eventLastSeen": "2026-03-20T08:15:00.000Z", "archived": false, "count": 11}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "f8a9b0c1d2e3012345678901f2345678", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-21T19:00:00.000Z", "updatedAt": "2026-03-21T19:00:00.000Z", "title": "An unprotected port on EC2 instance i-0dev567890 is being probed.", "description": "EC2 instance i-0dev567890 has an unprotected port 22 which is being probed by a known malicious host with IP address 194.26.29.102.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0dev567890", "instanceType": "t3.small", "tags": [{"key": "Name", "value": "dev-server-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 22, "portName": "SSH"}, "remoteIpDetails": {"ipAddressV4": "194.26.29.102", "country": {"countryName": "Russia"}, "city": {"cityName": "St Petersburg"}}}], "blocked": false}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-21T19:00:00.000Z", "eventLastSeen": "2026-03-21T19:00:00.000Z", "archived": false, "count": 3}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "a9b0c1d2e3f4012345678901a3456789", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-23T02:45:00.000Z", "updatedAt": "2026-03-23T02:45:00.000Z", "title": "An unprotected port on EC2 instance i-0dev567890 is being probed.", "description": "EC2 instance i-0dev567890 has an unprotected port 22 which is being probed by a known malicious host with IP address 141.98.10.55.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0dev567890", "instanceType": "t3.small", "tags": [{"key": "Name", "value": "dev-server-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 22, "portName": "SSH"}, "remoteIpDetails": {"ipAddressV4": "141.98.10.55", "country": {"countryName": "United States"}, "city": {"cityName": "New York"}}}], "blocked": false}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-23T02:45:00.000Z", "eventLastSeen": "2026-03-23T02:45:00.000Z", "archived": false, "count": 7}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "b0c1d2e3f4a5012345678901b4567890", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-25T13:20:00.000Z", "updatedAt": "2026-03-25T13:20:00.000Z", "title": "An unprotected port on EC2 instance i-0dev567890 is being probed.", "description": "EC2 instance i-0dev567890 has an unprotected port 22 which is being probed by a known malicious host with IP address 77.247.181.165.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0dev567890", "instanceType": "t3.small", "tags": [{"key": "Name", "value": "dev-server-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 22, "portName": "SSH"}, "remoteIpDetails": {"ipAddressV4": "77.247.181.165", "country": {"countryName": "Netherlands"}, "city": {"cityName": "Amsterdam"}}}], "blocked": false}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-25T13:20:00.000Z", "eventLastSeen": "2026-03-25T13:20:00.000Z", "archived": false, "count": 2}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "c1d2e3f4a5b6012345678901c5678901", "type": "UnauthorizedAccess:IAMUser/ConsoleLogin", "severity": 2, "createdAt": "2026-04-02T14:33:09.000Z", "updatedAt": "2026-04-02T14:34:22.000Z", "title": "An unusual console login was observed for IAM user intern-2026.", "description": "A console login was observed for IAM principal intern-2026 from IP address 98.45.172.101. This principal had 2 failed authentication attempts before a successful login.", "resource": {"resourceType": "AccessKey", "accessKeyDetails": {"principalId": "AIDAJK3EXAMPLE6", "userType": "IAMUser", "userName": "intern-2026"}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "AWS_API_CALL", "awsApiCallAction": {"api": "ConsoleLogin", "serviceName": "signin.amazonaws.com", "callerType": "Remote IP", "remoteIpDetails": {"ipAddressV4": "98.45.172.101", "organization": {"asn": "7922", "asnOrg": "Comcast Cable Communications, LLC"}, "country": {"countryName": "United States"}, "city": {"cityName": "Austin"}}}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-04-02T14:33:09.000Z", "eventLastSeen": "2026-04-02T14:34:22.000Z", "archived": false, "count": 3}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "d2e3f4a5b6c7012345678901d6789012", "type": "Policy:S3/AccountBlockPublicAccessDisabled", "severity": 2, "createdAt": "2026-03-10T00:00:00.000Z", "updatedAt": "2026-04-04T00:00:00.000Z", "title": "S3 account level block public access settings were disabled for account 471923845612.", "description": "S3 account level block public access settings (BlockPublicAcls, RestrictPublicBuckets) were disabled for account 471923845612, allowing individual bucket policies or ACLs to grant public access.", "resource": {"resourceType": "S3Bucket", "s3BucketDetails": [{"name": "N/A"}]}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "AWS_API_CALL", "awsApiCallAction": {"api": "PutAccountPublicAccessBlock", "serviceName": "s3.amazonaws.com"}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-10T00:00:00.000Z", "eventLastSeen": "2026-04-04T00:00:00.000Z", "archived": false, "count": 1}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "e3f4a5b6c7d8012345678901e7890123", "type": "Recon:EC2/Portscan", "severity": 2, "createdAt": "2026-03-28T16:30:00.000Z", "updatedAt": "2026-03-28T16:45:00.000Z", "title": "EC2 instance i-0web111111 is performing outbound port scans against remote hosts.", "description": "EC2 instance i-0web111111 is being used to perform outbound port scans against remote hosts on ports 80, 443, 8080, 8443.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0web111111", "instanceType": "t3.medium", "tags": [{"key": "Name", "value": "web-prod-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "NETWORK_CONNECTION", "networkConnectionAction": {"connectionDirection": "OUTBOUND", "protocol": "TCP", "blocked": false}}, "resourceRole": "ACTOR", "eventFirstSeen": "2026-03-28T16:30:00.000Z", "eventLastSeen": "2026-03-28T16:45:00.000Z", "archived": false, "count": 4}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "f4a5b6c7d8e9012345678901f8901234", "type": "UnauthorizedAccess:IAMUser/UnusualASNCaller", "severity": 2, "createdAt": "2026-03-31T02:00:18.000Z", "updatedAt": "2026-04-04T02:00:05.000Z", "title": "API PutObject was invoked from an unusual network by IAM user svc-backup-agent.", "description": "APIs were invoked by IAM principal svc-backup-agent from an IP address that is associated with a network not typically used by this principal.", "resource": {"resourceType": "AccessKey", "accessKeyDetails": {"principalId": "AIDAJK3EXAMPLESVC1", "userType": "IAMUser", "userName": "svc-backup-agent"}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "AWS_API_CALL", "awsApiCallAction": {"api": "PutObject", "serviceName": "s3.amazonaws.com", "callerType": "Remote IP", "remoteIpDetails": {"ipAddressV4": "10.0.1.47", "country": {"countryName": "Reserved"}}}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-31T02:00:18.000Z", "eventLastSeen": "2026-04-04T02:00:05.000Z", "archived": false, "count": 8}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "a5b6c7d8e9f0012345678901a9012345", "type": "Policy:IAMUser/S3BlockPublicAccessDisabled", "severity": 2, "createdAt": "2026-04-02T10:15:33.000Z", "updatedAt": "2026-04-02T10:15:33.000Z", "title": "S3 block public access was disabled for bucket cloudvault-app-assets.", "description": "S3 block public access settings (DeleteBucketPublicAccessBlock) were changed by IAM principal priya.sharma for S3 bucket cloudvault-app-assets.", "resource": {"resourceType": "S3Bucket", "s3BucketDetails": [{"name": "cloudvault-app-assets"}]}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "AWS_API_CALL", "awsApiCallAction": {"api": "DeleteBucketPublicAccessBlock", "serviceName": "s3.amazonaws.com", "callerType": "Remote IP", "remoteIpDetails": {"ipAddressV4": "98.45.172.88", "country": {"countryName": "United States"}, "city": {"cityName": "Austin"}}}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-04-02T10:15:33.000Z", "eventLastSeen": "2026-04-02T10:15:33.000Z", "archived": false, "count": 1}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "b6c7d8e9f0a1012345678901b0123456", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-22T09:15:00.000Z", "updatedAt": "2026-04-01T09:15:00.000Z", "title": "An unprotected port on EC2 instance i-0app222222 is being probed.", "description": "EC2 instance i-0app222222 has an unprotected port 8443 which is being probed by a known malicious host with IP address 162.142.125.44.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0app222222", "instanceType": "t3.large", "tags": [{"key": "Name", "value": "app-prod-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 8443, "portName": "HTTPS-ALT"}, "remoteIpDetails": {"ipAddressV4": "162.142.125.44", "country": {"countryName": "United States"}, "city": {"cityName": "Ann Arbor"}}}], "blocked": false}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-22T09:15:00.000Z", "eventLastSeen": "2026-04-01T09:15:00.000Z", "archived": false, "count": 18}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "c7d8e9f0a1b2012345678901c1234567", "type": "UnauthorizedAccess:IAMUser/UnusualASNCaller", "severity": 2, "createdAt": "2026-03-25T08:05:00.000Z", "updatedAt": "2026-03-25T08:05:00.000Z", "title": "API ConsoleLogin was invoked from an unusual network by IAM user dana.chen.", "description": "APIs were invoked by IAM principal dana.chen from an IP address that is associated with a network not typically used by this principal.", "resource": {"resourceType": "AccessKey", "accessKeyDetails": {"principalId": "AIDAJK3EXAMPLE1", "userType": "IAMUser", "userName": "dana.chen"}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "AWS_API_CALL", "awsApiCallAction": {"api": "ConsoleLogin", "serviceName": "signin.amazonaws.com", "callerType": "Remote IP", "remoteIpDetails": {"ipAddressV4": "72.34.55.198", "country": {"countryName": "United States"}, "city": {"cityName": "Denver"}}}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-25T08:05:00.000Z", "eventLastSeen": "2026-03-25T08:05:00.000Z", "archived": false, "count": 1}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "d8e9f0a1b2c3012345678901d2345678", "type": "UnauthorizedAccess:IAMUser/UnusualASNCaller", "severity": 2, "createdAt": "2026-03-29T15:22:00.000Z", "updatedAt": "2026-03-29T15:22:00.000Z", "title": "API DescribeInstances was invoked from an unusual network by IAM user priya.sharma.", "description": "APIs were invoked by IAM principal priya.sharma from an IP address that is associated with a network not typically used by this principal.", "resource": {"resourceType": "AccessKey", "accessKeyDetails": {"principalId": "AIDAJK3EXAMPLE2", "userType": "IAMUser", "userName": "priya.sharma"}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "AWS_API_CALL", "awsApiCallAction": {"api": "DescribeInstances", "serviceName": "ec2.amazonaws.com", "callerType": "Remote IP", "remoteIpDetails": {"ipAddressV4": "74.125.68.100", "country": {"countryName": "United States"}, "city": {"cityName": "Austin"}}}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-29T15:22:00.000Z", "eventLastSeen": "2026-03-29T15:22:00.000Z", "archived": false, "count": 1}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "e9f0a1b2c3d4012345678901e3456789", "type": "Recon:IAMUser/MaliciousIPCaller.Custom", "severity": 2, "createdAt": "2026-04-03T06:00:01.000Z", "updatedAt": "2026-04-03T06:00:01.000Z", "title": "API UpdateService was invoked from a known malicious IP address by IAM user svc-deploy-pipeline.", "description": "API UpdateService was invoked from a known malicious IP address 10.0.1.22 by IAM principal svc-deploy-pipeline.", "resource": {"resourceType": "AccessKey", "accessKeyDetails": {"principalId": "AIDAJK3EXAMPLE7", "userType": "IAMUser", "userName": "svc-deploy-pipeline"}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "AWS_API_CALL", "awsApiCallAction": {"api": "UpdateService", "serviceName": "ecs.amazonaws.com", "callerType": "Remote IP", "remoteIpDetails": {"ipAddressV4": "10.0.1.22", "country": {"countryName": "Reserved"}}}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-04-03T06:00:01.000Z", "eventLastSeen": "2026-04-03T06:00:01.000Z", "archived": false, "count": 1}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "f0a1b2c3d4e5012345678901f4567890", "type": "UnauthorizedAccess:IAMUser/UnusualASNCaller", "severity": 2, "createdAt": "2026-03-27T09:00:00.000Z", "updatedAt": "2026-03-27T09:00:00.000Z", "title": "API ListFindings was invoked from an unusual network by IAM user marcus.webb.", "description": "APIs were invoked by IAM principal marcus.webb from an IP address that is associated with a network not typically used by this principal.", "resource": {"resourceType": "AccessKey", "accessKeyDetails": {"principalId": "AIDAJK3EXAMPLE3", "userType": "IAMUser", "userName": "marcus.webb"}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "AWS_API_CALL", "awsApiCallAction": {"api": "ListFindings", "serviceName": "guardduty.amazonaws.com", "callerType": "Remote IP", "remoteIpDetails": {"ipAddressV4": "172.56.10.33", "country": {"countryName": "United States"}, "city": {"cityName": "Austin"}}}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-27T09:00:00.000Z", "eventLastSeen": "2026-03-27T09:00:00.000Z", "archived": false, "count": 1}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "a1b2c3d4e5f6112345678901a5678901", "type": "Policy:S3/BucketAnonymousAccessGranted", "severity": 2, "createdAt": "2026-03-15T00:00:00.000Z", "updatedAt": "2026-04-04T00:00:00.000Z", "title": "An API was invoked to check anonymous access on S3 bucket cloudvault-logs.", "description": "An IAM principal invoked an API used to evaluate whether anonymous access has been granted to S3 bucket cloudvault-logs.", "resource": {"resourceType": "S3Bucket", "s3BucketDetails": [{"name": "cloudvault-logs", "publicAccess": {"effectivePermission": "NOT_PUBLIC"}}]}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "AWS_API_CALL", "awsApiCallAction": {"api": "GetBucketAcl", "serviceName": "s3.amazonaws.com"}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-15T00:00:00.000Z", "eventLastSeen": "2026-04-04T00:00:00.000Z", "archived": false, "count": 1}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "b2c3d4e5f6a7112345678901b6789012", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-30T07:00:00.000Z", "updatedAt": "2026-03-30T07:00:00.000Z", "title": "An unprotected port on EC2 instance i-0fin444444 is being probed.", "description": "EC2 instance i-0fin444444 has an unprotected port 5432 which is being probed by a known malicious host with IP address 89.248.167.131.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0fin444444", "instanceType": "m5.large", "tags": [{"key": "Name", "value": "finance-server-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 5432, "portName": "PostgreSQL"}, "remoteIpDetails": {"ipAddressV4": "89.248.167.131", "country": {"countryName": "Netherlands"}, "city": {"cityName": "Amsterdam"}}}], "blocked": true}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-30T07:00:00.000Z", "eventLastSeen": "2026-03-30T07:00:00.000Z", "archived": false, "count": 2}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "c3d4e5f6a7b8112345678901c7890123", "type": "UnauthorizedAccess:IAMUser/UnusualASNCaller", "severity": 2, "createdAt": "2026-04-01T03:17:42.000Z", "updatedAt": "2026-04-04T03:17:42.000Z", "title": "API GetObject was invoked from an unusual network by IAM user svc-report-gen.", "description": "APIs were invoked by IAM principal svc-report-gen from an IP address that is associated with a network not typically used by this principal.", "resource": {"resourceType": "AccessKey", "accessKeyDetails": {"principalId": "AIDAJK3EXAMPLESVC2", "userType": "IAMUser", "userName": "svc-report-gen"}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "AWS_API_CALL", "awsApiCallAction": {"api": "GetObject", "serviceName": "s3.amazonaws.com", "callerType": "Remote IP", "remoteIpDetails": {"ipAddressV4": "10.0.2.15", "country": {"countryName": "Reserved"}}}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-04-01T03:17:42.000Z", "eventLastSeen": "2026-04-04T03:17:42.000Z", "archived": false, "count": 7}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "d4e5f6a7b8c9112345678901d8901234", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-12T00:00:00.000Z", "updatedAt": "2026-04-03T00:00:00.000Z", "title": "An unprotected port on EC2 instance i-0web111111 is being probed.", "description": "EC2 instance i-0web111111 has an unprotected port 25 which is being probed by a known malicious host with IP address 167.94.138.51.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0web111111", "instanceType": "t3.medium", "tags": [{"key": "Name", "value": "web-prod-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 25, "portName": "SMTP"}, "remoteIpDetails": {"ipAddressV4": "167.94.138.51", "country": {"countryName": "United States"}, "city": {"cityName": "Ann Arbor"}}}], "blocked": true}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-12T00:00:00.000Z", "eventLastSeen": "2026-04-03T00:00:00.000Z", "archived": false, "count": 45}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "e5f6a7b8c9d0112345678901e9012345", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-14T00:00:00.000Z", "updatedAt": "2026-04-02T00:00:00.000Z", "title": "An unprotected port on EC2 instance i-0app222222 is being probed.", "description": "EC2 instance i-0app222222 has an unprotected port 3306 which is being probed by a known malicious host with IP address 71.6.135.131.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0app222222", "instanceType": "t3.large", "tags": [{"key": "Name", "value": "app-prod-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 3306, "portName": "MySQL"}, "remoteIpDetails": {"ipAddressV4": "71.6.135.131", "country": {"countryName": "United States"}, "city": {"cityName": "San Diego"}}}], "blocked": true}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-14T00:00:00.000Z", "eventLastSeen": "2026-04-02T00:00:00.000Z", "archived": false, "count": 31}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "f6a7b8c9d0e1112345678901f0123456", "type": "UnauthorizedAccess:IAMUser/UnusualASNCaller", "severity": 2, "createdAt": "2026-03-28T14:30:00.000Z", "updatedAt": "2026-03-28T14:30:00.000Z", "title": "API ConsoleLogin was invoked from an unusual network by IAM user james.park.", "description": "APIs were invoked by IAM principal james.park from an IP address that is associated with a network not typically used by this principal.", "resource": {"resourceType": "AccessKey", "accessKeyDetails": {"principalId": "AIDAJK3EXAMPLE4", "userType": "IAMUser", "userName": "james.park"}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "AWS_API_CALL", "awsApiCallAction": {"api": "ConsoleLogin", "serviceName": "signin.amazonaws.com", "callerType": "Remote IP", "remoteIpDetails": {"ipAddressV4": "38.101.76.55", "country": {"countryName": "United States"}, "city": {"cityName": "Dallas"}}}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-28T14:30:00.000Z", "eventLastSeen": "2026-03-28T14:30:00.000Z", "archived": false, "count": 1}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "a7b8c9d0e1f2112345678901a1234567", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-26T00:00:00.000Z", "updatedAt": "2026-04-04T00:00:00.000Z", "title": "An unprotected port on EC2 instance i-0dev567890 is being probed.", "description": "EC2 instance i-0dev567890 has an unprotected port 445 which is being probed by a known malicious host with IP address 185.191.171.15.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0dev567890", "instanceType": "t3.small", "tags": [{"key": "Name", "value": "dev-server-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 445, "portName": "SMB"}, "remoteIpDetails": {"ipAddressV4": "185.191.171.15", "country": {"countryName": "Russia"}, "city": {"cityName": "Moscow"}}}], "blocked": false}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-26T00:00:00.000Z", "eventLastSeen": "2026-04-04T00:00:00.000Z", "archived": false, "count": 15}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "b8c9d0e1f2a3112345678901b2345678", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-10T00:00:00.000Z", "updatedAt": "2026-04-04T00:00:00.000Z", "title": "An unprotected port on EC2 instance i-0web111111 is being probed.", "description": "EC2 instance i-0web111111 has an unprotected port 443 which is being probed by a known malicious host with IP address 167.248.133.132.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0web111111", "instanceType": "t3.medium", "tags": [{"key": "Name", "value": "web-prod-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 443, "portName": "HTTPS"}, "remoteIpDetails": {"ipAddressV4": "167.248.133.132", "country": {"countryName": "United States"}, "city": {"cityName": "Ann Arbor"}}}], "blocked": false}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-10T00:00:00.000Z", "eventLastSeen": "2026-04-04T00:00:00.000Z", "archived": false, "count": 1247}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "c9d0e1f2a3b4112345678901c3456789", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-10T00:00:00.000Z", "updatedAt": "2026-04-04T00:00:00.000Z", "title": "An unprotected port on EC2 instance i-0web333333 is being probed.", "description": "EC2 instance i-0web333333 has an unprotected port 443 which is being probed by a known malicious host with IP address 167.248.133.132.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0web333333", "instanceType": "t3.medium", "tags": [{"key": "Name", "value": "web-prod-02"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 443, "portName": "HTTPS"}, "remoteIpDetails": {"ipAddressV4": "167.248.133.132", "country": {"countryName": "United States"}, "city": {"cityName": "Ann Arbor"}}}], "blocked": false}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-10T00:00:00.000Z", "eventLastSeen": "2026-04-04T00:00:00.000Z", "archived": false, "count": 1189}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "d0e1f2a3b4c5112345678901d4567890", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-10T00:00:00.000Z", "updatedAt": "2026-04-04T00:00:00.000Z", "title": "An unprotected port on EC2 instance i-0web111111 is being probed.", "description": "EC2 instance i-0web111111 has an unprotected port 80 which is being probed by a known malicious host with IP address 71.6.199.23.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0web111111", "instanceType": "t3.medium", "tags": [{"key": "Name", "value": "web-prod-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 80, "portName": "HTTP"}, "remoteIpDetails": {"ipAddressV4": "71.6.199.23", "country": {"countryName": "United States"}, "city": {"cityName": "San Diego"}}}], "blocked": false}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-10T00:00:00.000Z", "eventLastSeen": "2026-04-04T00:00:00.000Z", "archived": false, "count": 892}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "e1f2a3b4c5d6112345678901e5678901", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-10T00:00:00.000Z", "updatedAt": "2026-04-04T00:00:00.000Z", "title": "An unprotected port on EC2 instance i-0web333333 is being probed.", "description": "EC2 instance i-0web333333 has an unprotected port 80 which is being probed by a known malicious host with IP address 71.6.199.23.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0web333333", "instanceType": "t3.medium", "tags": [{"key": "Name", "value": "web-prod-02"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 80, "portName": "HTTP"}, "remoteIpDetails": {"ipAddressV4": "71.6.199.23", "country": {"countryName": "United States"}, "city": {"cityName": "San Diego"}}}], "blocked": false}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-10T00:00:00.000Z", "eventLastSeen": "2026-04-04T00:00:00.000Z", "archived": false, "count": 834}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "f2a3b4c5d6e7112345678901f6789012", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-20T00:00:00.000Z", "updatedAt": "2026-04-01T00:00:00.000Z", "title": "An unprotected port on EC2 instance i-0web333333 is being probed.", "description": "EC2 instance i-0web333333 has an unprotected port 8080 which is being probed by a known malicious host with IP address 198.235.24.68.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0web333333", "instanceType": "t3.medium", "tags": [{"key": "Name", "value": "web-prod-02"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 8080, "portName": "HTTP-ALT"}, "remoteIpDetails": {"ipAddressV4": "198.235.24.68", "country": {"countryName": "United States"}, "city": {"cityName": "Chicago"}}}], "blocked": true}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-20T00:00:00.000Z", "eventLastSeen": "2026-04-01T00:00:00.000Z", "archived": false, "count": 6}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "a3b4c5d6e7f8112345678901a7890123", "type": "UnauthorizedAccess:IAMUser/UnusualASNCaller", "severity": 2, "createdAt": "2026-03-23T10:00:00.000Z", "updatedAt": "2026-03-23T10:00:00.000Z", "title": "API DescribeInstances was invoked from an unusual network by IAM user dana.chen.", "description": "APIs were invoked by IAM principal dana.chen from an IP address that is associated with a network not typically used by this principal.", "resource": {"resourceType": "AccessKey", "accessKeyDetails": {"principalId": "AIDAJK3EXAMPLE1", "userType": "IAMUser", "userName": "dana.chen"}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "AWS_API_CALL", "awsApiCallAction": {"api": "DescribeInstances", "serviceName": "ec2.amazonaws.com", "callerType": "Remote IP", "remoteIpDetails": {"ipAddressV4": "24.56.178.90", "country": {"countryName": "United States"}, "city": {"cityName": "Austin"}}}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-23T10:00:00.000Z", "eventLastSeen": "2026-03-23T10:00:00.000Z", "archived": false, "count": 1}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "b4c5d6e7f8a9112345678901b8901234", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-31T00:00:00.000Z", "updatedAt": "2026-04-03T00:00:00.000Z", "title": "An unprotected port on EC2 instance i-0fin444444 is being probed.", "description": "EC2 instance i-0fin444444 has an unprotected port 1433 which is being probed by a known malicious host with IP address 80.82.77.139.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0fin444444", "instanceType": "m5.large", "tags": [{"key": "Name", "value": "finance-server-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 1433, "portName": "MSSQL"}, "remoteIpDetails": {"ipAddressV4": "80.82.77.139", "country": {"countryName": "Netherlands"}, "city": {"cityName": "Amsterdam"}}}], "blocked": true}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-31T00:00:00.000Z", "eventLastSeen": "2026-04-03T00:00:00.000Z", "archived": false, "count": 4}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "c5d6e7f8a9b0112345678901c9012345", "type": "Recon:EC2/PortProbeUnprotectedPort", "severity": 2, "createdAt": "2026-03-19T00:00:00.000Z", "updatedAt": "2026-04-01T00:00:00.000Z", "title": "An unprotected port on EC2 instance i-0app222222 is being probed.", "description": "EC2 instance i-0app222222 has an unprotected port 27017 which is being probed by a known malicious host with IP address 92.118.160.45.", "resource": {"resourceType": "Instance", "instanceDetails": {"instanceId": "i-0app222222", "instanceType": "t3.large", "tags": [{"key": "Name", "value": "app-prod-01"}]}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "PORT_PROBE", "portProbeAction": {"portProbeDetails": [{"localPortDetails": {"port": 27017, "portName": "MongoDB"}, "remoteIpDetails": {"ipAddressV4": "92.118.160.45", "country": {"countryName": "Netherlands"}, "city": {"cityName": "Amsterdam"}}}], "blocked": true}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-19T00:00:00.000Z", "eventLastSeen": "2026-04-01T00:00:00.000Z", "archived": false, "count": 9}},
+    {"schemaVersion": "2.0", "accountId": "471923845612", "region": "us-east-1", "partition": "aws", "id": "d6e7f8a9b0c1112345678901d0123456", "type": "UnauthorizedAccess:IAMUser/UnusualASNCaller", "severity": 2, "createdAt": "2026-03-20T22:00:00.000Z", "updatedAt": "2026-03-20T22:00:00.000Z", "title": "API ConsoleLogin was invoked from an unusual network by IAM user dana.chen.", "description": "APIs were invoked by IAM principal dana.chen from an IP address that is associated with a network not typically used by this principal.", "resource": {"resourceType": "AccessKey", "accessKeyDetails": {"principalId": "AIDAJK3EXAMPLE1", "userType": "IAMUser", "userName": "dana.chen"}}, "service": {"serviceName": "guardduty", "detectorId": "e80fbb4d783f4f9c", "action": {"actionType": "AWS_API_CALL", "awsApiCallAction": {"api": "ConsoleLogin", "serviceName": "signin.amazonaws.com", "callerType": "Remote IP", "remoteIpDetails": {"ipAddressV4": "209.216.230.75", "country": {"countryName": "United States"}, "city": {"cityName": "Las Vegas"}}}}, "resourceRole": "TARGET", "eventFirstSeen": "2026-03-20T22:00:00.000Z", "eventLastSeen": "2026-03-20T22:00:00.000Z", "archived": false, "count": 1}}
+  ]
+}
