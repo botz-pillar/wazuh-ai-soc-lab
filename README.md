@@ -1,18 +1,18 @@
-# AI Cloud Security Lab — Course 3: Wazuh SIEM + AI-augmented SOC
+# Wazuh AI SOC Lab
 
-> 🧪 **Beta.** This lab is open for beta runs. If anything breaks, feels off, or just confuses you — I want to hear about it. Three feedback paths: the `#Build Questions` channel in the [AI-CSL Skool community](https://skool.com/cloud-security-lab), a DM to Josh directly there, or [open a GitHub issue](https://github.com/botz-pillar/ai-csl-wazuh-lab/issues/new/choose). No feedback is too small.
+> **Run a real SOC investigation on AWS — with an AI partner that actually pulls its weight.**
+>
+> Two hours. Costs about a coffee in AWS compute. You stand up production-grade Wazuh SIEM with a Model Context Protocol (MCP) server wired in, then run a six-phase investigation: baseline → hunt → tripwire → response. By the end you've produced a SOC 2 evidence package on real lab infrastructure and seen what an AI security partner looks like when it's wired into the tools you actually use.
 
-**CloudVault Financial was breached. You ran the IR. The remediation looks clean, but three persistence categories from your report were never confirmed eliminated — and SOC 2 evidence collection starts in a few weeks. Dana brought in a senior SOC peer (Mateo) to help you stand up a SIEM, baseline the environment, hunt for what's left behind, and produce the evidence package.**
+**CloudVault Financial was breached. You ran the IR. The remediation looks clean, but three persistence categories from your report were never confirmed eliminated — and SOC 2 evidence collection starts in a few weeks. Dana (CISO) brings in Mateo, a senior SOC analyst, to help you stand up a SIEM, baseline the environment, hunt for what's left behind, and produce the audit package.**
 
-This is the infrastructure and instructor skill for Course 3 of the [AI Cloud Security Lab (AI-CSL)](https://skool.com/cloud-security-lab). Course 3 picks up where Courses 1 and 2 left off: same company, same CISO, same security lead (you), same unresolved threat. Pair a production-grade Wazuh 4.9 SIEM with the [gensecaihq/Wazuh-MCP-Server](https://github.com/gensecaihq/Wazuh-MCP-Server), and let Mateo guide you through the post-incident investigation via Claude Code.
-
-**~2 hours. Costs about a coffee in AWS compute (most cloud learners have credits sitting unused that cover it). Walk out with a portfolio artifact.**
+That's the setup. The repo is the lab. Pair Wazuh 4.9 with the [gensecaihq/Wazuh-MCP-Server](https://github.com/gensecaihq/Wazuh-MCP-Server), launch Claude Code, and Mateo guides you through the investigation in natural language — while you verify everything yourself. No black boxes.
 
 ---
 
 ## What you'll do
 
-Six phases of the investigation, one continuous ~2-hour session:
+Six phases of investigation, one continuous ~2-hour session:
 
 | # | Phase | What happens |
 |---|---|---|
@@ -22,6 +22,33 @@ Six phases of the investigation, one continuous ~2-hour session:
 | 4 | 🎯 The backdoor hunt | Four structured hunts against the three persistence categories from the IR report (account, listener, scheduler) plus an AI-verification drill. Hunt log becomes SOC 2 evidence. |
 | 5 | ⚡ Tripwires and response | Write custom rule 100001 — the CloudVault client-data tripwire Dana asked for. Validate with `wazuh-logtest`. Deploy, trigger, verify. Take a duration-based active response. |
 | 6 | 🧹 Close the case | Compressed end-to-end IR on a fresh alert. Evidence package for Dana and the SOC 2 audit (CC7.1 / CC7.2). Personal artifact for interviews. `terraform destroy` with verification. |
+
+---
+
+## What's in this repo
+
+The core lab:
+
+- **`terraform/`** — Wazuh manager + 3 CloudVault agents on AWS, deploys in ~20 min
+- **`scripts/`** — `bootstrap.sh` (one-command deploy), `doctor.sh` (health check), start/stop helpers
+- **`docs/`** — architecture, costs, MCP server setup, custom detection rules, troubleshooting
+- **`lab-guide/`** — step-by-step walkthrough independent of the AI co-pilot
+- **`mcp/`** — MCP-specific notes (active response patterns, direct Wazuh API fallback)
+- **`.claude/skills/course-3-instructor/SKILL.md`** — the Mateo playbook (1,200+ lines). Auto-loads in Claude Code. The product.
+
+The scenario:
+
+- **`data/cloudvault-financial/`** — the breach narrative + supporting datasets (CloudTrail, GuardDuty, SOC 2 tracker, remediation-review files, attack chain)
+- **`notebooklm-sources/`** — drop these into [NotebookLM](https://notebooklm.google.com) and you've got a queryable "CloudVault security brain" alongside the lab (SOC 2 criteria, IR framework, vendor evaluation guide, full CloudVault security profile)
+
+For going deeper:
+
+- **`wazuh-mcp/sandbox/`** — single-node Wazuh on Docker, runs on a 16 GB laptop. MCP development + testing without AWS.
+- **`wazuh-mcp/abuse-harness/`** — 6-pattern adversarial test suite for any MCP server. Prompt-injection-via-resource, tool spam / rate-limit, input validation, auth-bypass + stack-trace leak, structured-error compliance, write-tool authority gating. Useful if you're building MCP servers and want to know they'll hold up.
+- **`optional-labs/`** — three bonus practice corpora that pair with the core lab:
+  - **`detection-engineering/`** — labeled Windows/Sysmon corpus generator (~5,000 events, 8 MITRE techniques planted). Practice writing Sigma rules with a measured false-positive rate against ground truth.
+  - **`incident-investigator/`** — synthetic CloudTrail corpus (~30k events) with a planted IAM-access-key-compromise narrative. Includes three indirect-prompt-injection payloads embedded in the data — test whether your AI-augmented investigation pipeline catches them and refuses to comply.
+  - **`runbook-search/`** — 10 sanitized AWS incident-response runbooks (IAM compromise, GuardDuty triage, S3 exposure, CloudTrail tampering, EC2 isolation, etc.). Build a RAG-with-citations skill on top. One runbook is planted-stale to exercise your freshness check.
 
 ---
 
@@ -35,8 +62,8 @@ Six phases of the investigation, one continuous ~2-hour session:
 
 ```bash
 # 1. Clone
-git clone https://github.com/botz-pillar/ai-csl-wazuh-lab.git
-cd ai-csl-wazuh-lab
+git clone https://github.com/botz-pillar/wazuh-ai-soc-lab.git
+cd wazuh-ai-soc-lab
 
 # 2. Configure Terraform (your public IP, your EC2 key name)
 cp terraform/terraform.tfvars.example terraform/terraform.tfvars
@@ -48,8 +75,8 @@ $EDITOR terraform/terraform.tfvars
 # 4. Launch Claude Code in the lab directory
 claude
 
-# 5. Tell Mateo you're starting
-# > I'm starting Course 3
+# 5. Start the investigation
+# > Start the lab
 ```
 
 ### Path B — Codespaces (no local install)
@@ -59,9 +86,9 @@ GitHub Codespaces gives you a pre-built environment with Terraform, AWS CLI, Doc
 1. **Add AWS keys to Codespaces user secrets** at <https://github.com/settings/codespaces>. Set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` (use the lab IAM user — see [docs/IAM-LAB-POLICY.md](docs/IAM-LAB-POLICY.md)). Scope them to this repo.
 2. **Launch the Codespace** — green Code button on this repo → **Codespaces** tab → **Create codespace on main**. ~2 min to build.
 3. **Inside the Codespace**, follow steps 2-5 from Path A. The `bootstrap.sh` script handles S3 state automatically — Codespaces are ephemeral, so state lives in S3, not on the container.
-4. **Dashboard access:** the Codespace forwards port 443 (Wazuh dashboard) and 3000 (MCP) via SSH tunnels to the manager. Mateo will walk you through the tunnel command when you reach Lesson 1.
+4. **Dashboard access:** the Codespace forwards port 443 (Wazuh dashboard) and 3000 (MCP) via SSH tunnels to the manager. Mateo will walk you through the tunnel command when you reach Phase 1.
 
-Mateo takes it from there. Total deploy time ~20-25 min (Terraform is ~2 min, Wazuh install is ~15 min, MCP install is ~3 min, agent registration is ~5 min — mostly parallel). Mateo teaches during the wait so there's no dead time.
+Mateo takes it from there. Total deploy time ~20-25 min (Terraform ~2 min, Wazuh install ~15 min, MCP install ~3 min, agent registration ~5 min — mostly parallel). Mateo teaches during the wait, so there's no dead time.
 
 ---
 
@@ -118,10 +145,10 @@ The MCP server runs on the manager. `bootstrap.sh` installs it, fetches a bearer
 
 - [Architecture](docs/architecture.md) — detailed network + data flow
 - [Costs](docs/costs.md) — full cost breakdown + cost-saving tips
-- [MCP Server Setup](docs/mcp-server-setup.md) — what bootstrap.sh did on your behalf + manual install reference for reproducing in production
-- [Custom Detection Rules](docs/custom-detection-rules.md) — the Wazuh rule syntax primer from L5, standalone
+- [MCP Server Setup](docs/mcp-server-setup.md) — what bootstrap.sh did on your behalf + manual install reference
+- [Custom Detection Rules](docs/custom-detection-rules.md) — Wazuh rule syntax primer, standalone
 - [Troubleshooting](docs/troubleshooting.md) — common issues including MCP-specific ones
-- `.claude/skills/course-3-instructor/SKILL.md` — **the Mateo playbook** (1,200+ lines). Auto-loads in Claude Code. The product.
+- [`lab-guide/`](lab-guide/) — five-step manual walkthrough (no AI co-pilot)
 
 ---
 
@@ -137,11 +164,17 @@ The MCP server runs on the manager. `bootstrap.sh` installs it, fetches a bearer
 
 ---
 
-## Support
+## About
 
-- **In-course issues** (something about the lab itself): open a GitHub Issue here
-- **Learning questions** (Wazuh, SOC concepts, the course material): the AI-CSL Skool community → `#build-questions` channel
-- **MCP server issues upstream**: [gensecaihq/Wazuh-MCP-Server](https://github.com/gensecaihq/Wazuh-MCP-Server/issues)
+Built by **[Josh Botz](https://www.linkedin.com/in/joshthebotz/)** — cloud security + AI agent security practitioner. Background in FedRAMP / ConMon, Fortune 500 + IC work. Currently focused on agent security: detection, red-team, and the tooling that makes it useful. Connect on [LinkedIn](https://www.linkedin.com/in/joshthebotz/) — happy to talk about how AI shows up in real security work.
+
+---
+
+## Support + contributing
+
+- **Lab issues** (deploy, Terraform, MCP wiring, anything broken): [open a GitHub Issue](https://github.com/botz-pillar/wazuh-ai-soc-lab/issues/new)
+- **MCP server bugs upstream**: [gensecaihq/Wazuh-MCP-Server](https://github.com/gensecaihq/Wazuh-MCP-Server/issues)
+- **Pull requests welcome.** This lab originated from a curriculum I built — it works, but every environment is a little different. If you find a bug or have a fix, send it in.
 
 ---
 
